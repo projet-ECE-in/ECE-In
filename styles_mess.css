@@ -16,7 +16,7 @@ body, html {
 header {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 11%;
     background-color: rgb(5, 100, 208);
 }
 #description{
@@ -100,7 +100,7 @@ header {
     
 }
 .right-panel-bas {
-    height: 10%;
+    height: 12%;
     width: 100%;
     padding-left: 2%;
     padding-right: 2%;
@@ -110,7 +110,7 @@ header {
 
 }
 .right-panel-middle{
-    height: 80%;
+    height: 78%;
     width: 100%;
     padding-left: 2%;
     padding-right: 2%;
