@@ -23,13 +23,11 @@ header {
 }
 
 .navbar {
-    width: 80px;
-    background-color: #f8f9fa;
-    border-right: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
+    margin: 0;
+    padding-left: 0;
+    height: 20%;
+    width: 4%;
+    border:#666;
 }
 
 .image-container img {
