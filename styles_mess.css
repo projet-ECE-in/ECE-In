@@ -122,14 +122,14 @@ header {
 .separator2 {
     height: 1px;
     width:100%;
-    background-color: #b1afaf;
+    background-color: #ddd;
     cursor: col-resize;
     position: relative;
     z-index: 1;
 }
 .separator {
     width: 1px;
-    background-color: #b1afaf;
+    background-color: #ddd;
     cursor: col-resize;
     position: relative;
     z-index: 1;
