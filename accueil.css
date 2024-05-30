@@ -12,11 +12,12 @@ header {
     background-color: rgb(5, 100, 208);
 }
 
-#description{
+#titre{
     position: absolute;
     margin-top: 20px;
     margin-left: 10px;
     color: white;
+    left: 250px;
 }
 
 #logo{
