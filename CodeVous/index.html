@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>ECE In - Vous</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>ECE In - Votre Profil</h1>
+    </header>
+    <main>
+        <section id="profile">
+            <h2>Votre Profil</h2>
+            <div id="profile-picture-container">
+                <img id="profile-picture" src="default-profile.png" alt="Votre photo de profil">
+                <input type="file" id="upload-photo" accept="image/*">
+                <p id="profile-name-text">Votre nom complet</p>
+            </div>
+            <div id="profile-info">
+                <label for="name">Nom :</label>
+                <input type="text" id="name" placeholder="Votre nom complet" oninput="updateProfileName()">
+                <label for="email">Email :</label>
+                <input type="email" id="email" placeholder="Votre email">
+            </div>
+        </section>
+        <section id="education">
+            <h2>Formations</h2>
+            <div id="education-list">
+                <!-- On ajoute les formations ici -->
+            </div>
+            <button id="add-education">Ajouter une formation</button>
+        </section>
+        <section id="projects">
+            <h2>Projets</h2>
+            <div id="projects-list">
+                <!-- On aoute les projects ici -->
+            </div>
+            <button id="add-project">Ajouter un projet</button>
+        </section>
+        <section id="cv-section">
+            <h2>Générer mon CV</h2>
+            <button id="generate-cv">Générer mon CV</button>
+            <button id="import-xml">Importer données XML</button>
+            <div id="cv-output">
+                <!-- On peut générer le Cv ici -->
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
