@@ -14,7 +14,7 @@
 <body>
     <header class="page-header header container-fluid">
            <h1 id="titre">ECE In : Social Media Professionnel de l'ECE Paris</h1>
-           <img id="logo" src="image_mess/Logo_ECEIn.png" alt="Logo">
+           <img id="logo" src="Images/Logo_ECEIn.png" alt="Logo">
 
     </header>
 
@@ -24,12 +24,12 @@
         </button>
         <div class="collapse navbar-collapse" id="main-navigation">
         <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="accueil.html"> <div class="image-container"><img src="image_mess/accueil.png" alt="Accueil"> <span>Accueil</span> </div> </a> </li>  
-        <li class="nav-item"><a class="nav-link" href="code reseau/reseau.html"> <div class="image-container"><img src="image_mess/loupe.png" alt="Mon réseau"> <span>Mon Réseau</span> </div> </a> </li>
-        <li class="nav-item"><a class="nav-link" href="CodeVous/index.html"> <div class="image-container"><img src="image_mess/profil2.png" alt="Vous"> <span>Vous</span> </div> </a> </li>
-        <li class="nav-item"><a class="nav-link" href="#"> <div class="image-container"><img src="image_mess/notif.png" alt="Notifications"> <span>Notifications</span> </div> </a> </li>
-        <li class="nav-item"><a class="nav-link" href="mess.html"> <div class="image-container"><img src="image_mess/mess.png" alt="Messagerie"> <span>Messagerie</span> </div> </a> </li>
-        <li class="nav-item"><a class="nav-link" href="code emploi/emploi.html"> <div class="image-container"><img src="image_mess/empoie.png" alt="Emplois"> <span>Emplois</span> </div> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="accueil.php"> <div class="image-container"><img src="Images/accueil.png" alt="Accueil"> <span>Accueil</span> </div> </a> </li>  
+        <li class="nav-item"><a class="nav-link" href="../code reseau/reseau.html"> <div class="image-container"><img src="Images/loupe.png" alt="Mon réseau"> <span>Mon Réseau</span> </div> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../CodeVous/index.html"> <div class="image-container"><img src="Images/profil2.png" alt="Vous"> <span>Vous</span> </div> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="#"> <div class="image-container"><img src="Images/notif.png" alt="Notifications"> <span>Notifications</span> </div> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../mess.html"> <div class="image-container"><img src="Images/mess.png" alt="Messagerie"> <span>Messagerie</span> </div> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../code emploi/emploi.html"> <div class="image-container"><img src="Images/emploi.png" alt="Emplois"> <span>Emplois</span> </div> </a> </li>
         </ul>
         <script> 
         $(document).ready(function(){
