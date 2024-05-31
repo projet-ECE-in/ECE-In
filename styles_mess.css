@@ -185,3 +185,7 @@ header {
     resize: none; /* Désactivez la redimension */
     outline: none;
 }
+
+#content {
+    margin-top: 20px;
+}

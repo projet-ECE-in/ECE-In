@@ -45,3 +45,23 @@ $(document).ready(function(){
         }
     );
 });
+$(document).ready(function() {
+    $('.nav-link').on('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+
+        var url = $(this).attr('href'); // Obtient l'URL du lien
+
+        $('#content').fadeOut(500, function() { // Fait disparaître le contenu actuel
+            $.ajax({
+                url: url,
+                success: function(data) {
+                    $('#content').html($(data).find('#content').html()); // Charge le nouveau contenu
+                    $('#content').fadeIn(500); // Fait apparaître le nouveau contenu
+                },
+                error: function() {
+                    alert('Erreur lors du chargement de la page.');
+                }
+            });
+        });
+    });
+});

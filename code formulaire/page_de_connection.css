@@ -1,0 +1,184 @@
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+  }
+  
+  :root {
+    --card-height: 80vh;
+    --card-width: calc(var(--card-height) / 1.2);
+  }
+
+
+
+  body, html {
+    font-family: 'Times New Roman', Times, serif;
+    height: 100%;
+    margin-top: 0%;
+    
+    width:100%;
+}
+
+.no-margin {
+    margin: 0;
+}
+#logo{
+    margin-top: 0;
+    margin-left: 1390px;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    height: 11%;
+    background-color: rgb(5, 100, 208);
+}
+#description{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 10px;
+    color: white;
+}
+
+  
+  
+.wrapper{
+    padding-top : 3%   ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  .titre{
+    font-size: 2em;
+    
+    padding: 10px;
+  }
+    
+  @keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
+  .separator {
+    width: 2px;
+    background: #000;
+    margin: 0 20px;
+}
+.form-container {
+    display: flex;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+  .frame {
+    width: 40vh;
+    margin: 40px auto;
+    text-align: center;
+  }
+  button {
+    margin: 0;
+  }
+  .custom-btn {
+    width: 40vh;
+    height: 40px;
+    color: rgb(5, 100, 208);
+    border-radius: 10px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+     box-shadow:inset 2px 2px 2px 0px rgb(255, 255, 255),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+  }
+  .submit {
+    background: #ffffff;
+    border: none;
+    font-size: 16px;
+    z-index: 1;
+  }
+  .submit:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background-color: rgb(5, 100, 208);
+    border-radius: 10px;
+     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+    transition: all 0.7s ease;
+  }
+  .submit:hover {
+    color: #fff;
+    transition: all 0.7s ease;
+  }
+  .submit:hover:after {
+    left: 0;
+    width: 100%;
+  }
+  .submit:active {
+    top: 2px;
+  }
+  
+  
+
+  form{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    font-family: 'Lato';
+  }
+  
+
+  
+#name, #password,#email,#password-c,#new_name,#new_password, #phone {
+    width: 50vh;
+    padding: 10px 0;
+    font-size: 16px;;
+    color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    outline: none;
+    background: transparent;
+  }
+
+  .wrapper form .user-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  .wrapper form .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 20px;
+    color: rgb(5, 100, 208);
+    pointer-events: none;
+    transition: .5s;
+  }
+  
+  .wrapper .user-box input:focus ~ label,
+  .wrapper .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: rgb(5, 100, 208);
+    font-size: 16px;
+  }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="code formulaire/page_de_connection.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+</head>
+<body>
+    <header class="page-header header container-fluid">
+        <h1 id="description">ECE In : Social Media Professionnel de l'ECE Paris</h1>
+        <img id="logo" src="Images/Logo_ECEIn.png" alt="Logo">
+    </header>
+    <div class="wrapper">
+        <div class="form-container">
+            <div class="form">
+                <div class="titre"><h1>Connexion :</h1></div>
+                <form action="connection.php" method="post">
+                    <div class="user-box">
+                        <input type="text" name="name" id="name" required="">
+                        <label for="name">Pseudo</label>
+                    </div>
+
+                    <div class="user-box">
+                        <input type="password" name="password" id="password" required="">
+                        <label for="password">Mot de passe</label>
+                    </div>
+                    <div class="user-box">
+                        <button type="submit" name="enter" id="enter" class="custom-btn submit">Se connecter</button>
+                    </div>
+                </form>
+            </div>
+            <div class="separator"></div>
+            <div class="form">
+                <div class="titre"><h1>Inscription :</h1></div>
+                <form action="creation_inscription.php" method="post">
+                    <div class="user-box">
+                        <input type="text" name="new_name" id="new_name" required="">
+                        <label for="new_name">Votre pseudo</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="tel" name="phone" id="phone" required="">
+                        <label for="phone">Votre numéro de téléphone</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="email" name="email" id="email" required="">
+                        <label for="email">Votre email</label>
+                    </div>
+                    
+                    <div class="user-box">
+                        <input type="password" name="new_password" id="new_password" required="">
+                        <label for="new_password">Votre mot de passe</label>
+                    </div>
+
+                    <div class="user-box">
+                        <input type="password" name="password-c" id="password-c" required="">
+                        <label for="new_password">Confirmer votre mot de passe</label>
+                    </div>
+                    <div class="user-box">
+                        <button type="submit" name="register" id="register" class="custom-btn submit">S'inscrire</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
