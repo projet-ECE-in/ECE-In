@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Configuration de la base de données
 $servername = "localhost:3308";
 $username = "root";
@@ -35,11 +36,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['utilisateur_password'])) {
             echo "Connexion réussie!";
             // Démarrer une session et stocker les informations utilisateur
-            session_start();
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
+          
+            $_SESSION['id'] = $user['id_utilisateur'];
+            $_SESSION['name'] = $user['utilisateur_lastname'];
+            $_SESSION['firstname'] = $user['utilisateur_firstname'];
+
+            $_SESSION['pseudo'] = $user['utilisateur_pseudo'];
+            $_SESSION['email'] = $user['utilisateur_mail'];
+            $_SESSION['password'] = $user['utilisateur_password'];
+            $_SESSION['role'] = $user['utilisateur_role'];
+            $_SESSION['phone'] = $user['utilisateur_phone'];
+            $_SESSION['pdp'] = $user['utilisateur_profile_picture'];
+            $_SESSION['cv'] = $user['utilisateur_cv'];
+            $_SESSION['bio'] = $user['utilisateur_xml'];
+            $_SESSION['date'] = $user['utilisateur'];
+            
             // Rediriger vers la page d'accueil ou une autre page sécurisée
-            header("Location: front.html");
+            header("Location: code_chat/chat.php");
             exit();
         } else {
         

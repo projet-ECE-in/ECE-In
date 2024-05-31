@@ -1,222 +1,93 @@
-@property --rotate {
-    syntax: "<angle>";
-    initial-value: 132deg;
-    inherits: false;
-  }
-  
-  :root {
-    --card-height: 80vh;
-    --card-width: calc(var(--card-height) / 1.2);
-  }
-  
-  body, html {
-    height: 100%;
-    margin-top: 0%;
-   
-    width:100%;
-}
-
-.no-margin {
-    margin: 0;
-}
-#logo{
-    margin-top: 0;
-    margin-left: 1390px;
-}
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  background: white;
+  color: black;
+ }
 
 header {
-    position: relative;
-    width: 100%;
-    height: 11%;
-    background-color: rgb(5, 100, 208);
-}
-#description{
-    position: absolute;
-    margin-top: 20px;
-    margin-left: 10px;
-    color: white;
+  position: relative;
+  width: 100%;
+  height: 11%;
+  background-color: rgb(5, 100, 208);
 }
 
-  
-  
-  .card {
-    margin-top: 1.5vh;
-    background: #c3d3d2;
-    width: var(--card-width);
-    height: var(--card-height);
-    position: relative;
-    border-radius: 10px;
-    padding: 3px;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1.5em;
-  }
-  
-  
-  .card::before {
-    content: "";
-    width: 104%;
-    height: 102%;
-    border-radius: 8px;
-    background-image: linear-gradient(
-      var(--rotate)
-      , white,darkcyan);
-      position: absolute;
-      z-index: -1;
-      top: -1%;
-      left: -2%;
-      animation: spin 5s linear infinite;
-  }
-  
-  .card::after {
-    position: absolute;
-    content: "";
-    top: calc(var(--card-height) / 6);
-    left: 0;
-    right: 0;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    transform: scale(0.8);
-    filter: blur(calc(var(--card-height) / 6));
-    background-image: linear-gradient(
-      var(--rotate)
-      , white,darkcyan,cyan);
-      opacity: 1;
-    transition: opacity .5s;
-    animation: spin 5s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% {
-      --rotate: 0deg;
-    }
-    100% {
-      --rotate: 360deg;
-    }
-  }
-  
-  .frame {
-    width: 40vh;
-    margin: 40px auto;
-    text-align: center;
-  }
-  button {
-    margin: 0;
-  }
-  .custom-btn {
-    width: 40vh;
-    height: 40px;
-    color: rgb(11, 90, 101);
-    border-radius: 10px;
-    padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-     7px 7px 20px 0px rgba(0,0,0,.1),
-     4px 4px 5px 0px rgba(0,0,0,.1);
-    outline: none;
-  }
-  .submit {
-    background: #c3d3d2;
-    border: none;
-    font-size: 16px;
-    z-index: 1;
-  }
-  .submit:after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    background-color: rgb(11, 90, 101);
-    border-radius: 10px;
-     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-     7px 7px 20px 0px rgba(0,0,0,.1),
-     4px 4px 5px 0px rgba(0,0,0,.1);
-    transition: all 0.7s ease;
-  }
-  .submit:hover {
-    color: #fff;
-    transition: all 0.7s ease;
-  }
-  .submit:hover:after {
-    left: 0;
-    width: 100%;
-  }
-  .submit:active {
-    top: 2px;
-  }
-  
-  .card h2 {
-    margin-bottom: 2vh;
-    padding: 0;
-    color: rgb(11, 90, 101);
-    text-align: center;
-    font-size: 2.2em;
-    font-weight: bold;
-    font-family: 'Lato';
-  }
+#titre{
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 10px;
+  color: white;
+  left: 250px;
+}
 
-  form{
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-    font-family: 'Lato';
-  }
-  
-  .card form .user-box {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    display: flex;
-  }
+#logo{
+  margin-top: 0;
+  margin-left: 1390px;
+}
 
-  #error-message{
-    color: red;
-    font-size: 0.6em;
-  }
+.navbar {
+  background: white;
+  max-height: 80px;
+  overflow: hidden;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-between; 
+  width: 100%;
+}
+
+.nav-link, .navbar-brand {
+  color: black;
+  cursor: pointer;
+  font-size: large;
+  text-align: center; 
+  padding: 0;
+}
+
+.nav-item {
+  flex: 1; 
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.image-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+}
+
+.image-container img {
+  max-height: 30px; 
+  width: auto; 
+}
+
+.image-container span {
+  display: block;
+  margin-top: 5px; 
+}
+
+.nav-item a {
+  display: inline-block;
+  padding: 0; 
+}
+
+
+#intro {
+  text-align: center;
+  margin-top: 10px;
+  font-size: xx-large;
+}
+
+#texte {
+  text-align:justify;
+  font-size: larger;
+  margin-left: 10px;
+  margin-right: 10px;
   
-#name, #password {
-    width: 50vh;
-    padding: 10px 0;
-    font-size: 16px;;
-    color: rgb(11, 90, 101);
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid rgb(11, 90, 101);
-    outline: none;
-    background: transparent;
-  }
-  
-  .card form .user-box label {
-    position: absolute;
-    top:0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 20px;
-    color: rgb(11, 90, 101);
-    pointer-events: none;
-    transition: .5s;
-  }
-  
-  .card .user-box input:focus ~ label,
-  .card .user-box input:valid ~ label {
-    top: -20px;
-    left: 0;
-    color: rgb(11, 90, 101);
-    font-size: 16px;
-  }
+}
