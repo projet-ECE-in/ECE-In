@@ -8,11 +8,14 @@
     --card-height: 80vh;
     --card-width: calc(var(--card-height) / 1.2);
   }
-  
+
+
+
   body, html {
+    font-family: 'Times New Roman', Times, serif;
     height: 100%;
     margin-top: 0%;
-   
+    
     width:100%;
 }
 
@@ -39,59 +42,19 @@ header {
 
   
   
-  .card {
-    margin-top: 1.5vh;
-    background: #c3d3d2;
-    width: var(--card-width);
-    height: var(--card-height);
-    position: relative;
-    border-radius: 10px;
-    padding: 3px;
+.wrapper{
+    padding-top : 3%   ;
     display: flex;
     flex-direction: column;
-    gap: 2vh;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-size: 1.5em;
+}
+  .titre{
+    font-size: 2em;
+    
+    padding: 10px;
   }
-  
-  
-  .card::before {
-    content: "";
-    width: 104%;
-    height: 102%;
-    border-radius: 8px;
-    background-image: linear-gradient(
-      var(--rotate)
-      , white,darkcyan);
-      position: absolute;
-      z-index: -1;
-      top: -1%;
-      left: -2%;
-      animation: spin 5s linear infinite;
-  }
-  
-  .card::after {
-    position: absolute;
-    content: "";
-    top: calc(var(--card-height) / 6);
-    left: 0;
-    right: 0;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    transform: scale(0.8);
-    filter: blur(calc(var(--card-height) / 6));
-    background-image: linear-gradient(
-      var(--rotate)
-      , white,darkcyan,cyan);
-      opacity: 1;
-    transition: opacity .5s;
-    animation: spin 5s linear infinite;
-  }
-  
+    
   @keyframes spin {
     0% {
       --rotate: 0deg;
@@ -100,7 +63,18 @@ header {
       --rotate: 360deg;
     }
   }
-  
+  .separator {
+    width: 2px;
+    background: #000;
+    margin: 0 20px;
+}
+.form-container {
+    display: flex;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
   .frame {
     width: 40vh;
     margin: 40px auto;
@@ -112,7 +86,7 @@ header {
   .custom-btn {
     width: 40vh;
     height: 40px;
-    color: rgb(11, 90, 101);
+    color: rgb(5, 100, 208);
     border-radius: 10px;
     padding: 10px 25px;
     font-family: 'Lato', sans-serif;
@@ -121,13 +95,13 @@ header {
     transition: all 0.3s ease;
     position: relative;
     display: inline-block;
-     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+     box-shadow:inset 2px 2px 2px 0px rgb(255, 255, 255),
      7px 7px 20px 0px rgba(0,0,0,.1),
      4px 4px 5px 0px rgba(0,0,0,.1);
     outline: none;
   }
   .submit {
-    background: #c3d3d2;
+    background: #ffffff;
     border: none;
     font-size: 16px;
     z-index: 1;
@@ -140,7 +114,7 @@ header {
     top: 0;
     right: 0;
     z-index: -1;
-    background-color: rgb(11, 90, 101);
+    background-color: rgb(5, 100, 208);
     border-radius: 10px;
      box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
      7px 7px 20px 0px rgba(0,0,0,.1),
@@ -159,15 +133,7 @@ header {
     top: 2px;
   }
   
-  .card h2 {
-    margin-bottom: 2vh;
-    padding: 0;
-    color: rgb(11, 90, 101);
-    text-align: center;
-    font-size: 2.2em;
-    font-weight: bold;
-    font-family: 'Lato';
-  }
+  
 
   form{
     display: flex;
@@ -176,7 +142,21 @@ header {
     font-family: 'Lato';
   }
   
-  .card form .user-box {
+
+  
+#name, #password,#email,#password-c,#new_name,#new_password, #phone {
+    width: 50vh;
+    padding: 10px 0;
+    font-size: 16px;;
+    color: rgb(0, 0, 0);
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    outline: none;
+    background: transparent;
+  }
+
+  .wrapper form .user-box {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -184,39 +164,21 @@ header {
     margin: 0;
     display: flex;
   }
-
-  #error-message{
-    color: red;
-    font-size: 0.6em;
-  }
-  
-#name, #password {
-    width: 50vh;
-    padding: 10px 0;
-    font-size: 16px;;
-    color: rgb(11, 90, 101);
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid rgb(11, 90, 101);
-    outline: none;
-    background: transparent;
-  }
-  
-  .card form .user-box label {
+  .wrapper form .user-box label {
     position: absolute;
     top:0;
     left: 0;
     padding: 10px 0;
     font-size: 20px;
-    color: rgb(11, 90, 101);
+    color: rgb(5, 100, 208);
     pointer-events: none;
     transition: .5s;
   }
   
-  .card .user-box input:focus ~ label,
-  .card .user-box input:valid ~ label {
+  .wrapper .user-box input:focus ~ label,
+  .wrapper .user-box input:valid ~ label {
     top: -20px;
     left: 0;
-    color: rgb(11, 90, 101);
+    color: rgb(5, 100, 208);
     font-size: 16px;
   }
