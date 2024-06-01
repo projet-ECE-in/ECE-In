@@ -52,7 +52,7 @@ session_start();
 </div>
 <div class="separator"></div>
     <div class="left-panel">
-        <div class="left-panel-haut">
+        <div class="left-panel-haut" >
             <h1>Messagerie</h1>
         </div>
         
@@ -61,20 +61,20 @@ session_start();
         <div class="left-panel-bas">
             
             <?php
-            if(isset($_SESSION["amis_ids"])) {
-                $i=0;
+            if (isset($_SESSION["amis_ids"])) {
+                $i = 0;
                 
                 foreach ($_SESSION["pdp_a"] as $ami) {
+                    $prenom = $_SESSION["amis_firstname"][$i];
+                    $pdp= $ami;
+                    echo '<div class="contact" onclick="turn(\'' . $prenom . '\',\''.$pdp.'\')">';
+                    echo '<img src="' . $ami . '" alt="profil" class="image_contact">';
+                    echo '<div class="couleur">' . $prenom . '</div>';
+                    echo '</div>';
                     
-
-                   
-                    echo '<div class="contact" >
-                    <img src="'.$ami.'" alt="profil"  class="image_contact" > <div class="couleur">'.$_SESSION["amis_firstname"][$i].'</div>
-                    
-                    </div>';
                     $i++;                 
                 }
-               }
+            }
                    
                  
                     
@@ -93,7 +93,11 @@ session_start();
         </div>
         <div class="separator"></div>
         <div class="right-panel">
-            <div class="right-panel-haut"> nom du contact</div>
+            <div class="right-panel-haut"> 
+                <div id ="photo_conv"></div>
+                <div id="nom_conv"></div>
+                
+            </div>
             <div class="separator2"></div>
             <div class="right-panel-middle"></div>
             <div class="right-panel-bas"><input class="message_u" type="text" placeholder="Envoyer un message"></div>

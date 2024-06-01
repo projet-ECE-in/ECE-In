@@ -65,3 +65,9 @@ $(document).ready(function() {
         });
     });
 });
+function turn(a,b){
+    var photoDiv = document.getElementById('photo_conv');
+    photoDiv.innerHTML = '<img src="' + b + '" class="image_contact">';
+    document.getElementById('nom_conv').innerText = a;
+    
+}
