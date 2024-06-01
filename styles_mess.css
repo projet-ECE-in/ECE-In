@@ -141,6 +141,24 @@ header {
      box-sizing: border-box;
 
 }
+.image_contact{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.aucun-ami{
+    height: 100%;
+    width: 100%;
+    margin-top: 20%;
+    text-align: center;
+}
+.contacts {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
 .contact:hover {
     background-color: #b6b6b6; /* Light gray color on hover */
 }

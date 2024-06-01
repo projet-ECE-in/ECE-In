@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,10 +59,38 @@
             <input class="left-middle" type="text" placeholder="Rechercher un contact">
         
         <div class="left-panel-bas">
-            <div class="contact" mouseover=contact_surpasse()>caca</div>
-            <div class="contact">acac</div>
-            <div class="contact">caca</div>
-            <div class="contact">caca</div>
+            
+            <?php
+            if(isset($_SESSION["amis_ids"])) {
+              
+                foreach ($_SESSION["pdp_a"] as $ami2) {
+                    echo $ami2;
+                }
+               
+                $i=0;
+                foreach ($_SESSION["pdp_a"] as $ami) {
+                    $i++;
+                    echo '<div class="contact">
+                    <img src="'.$ami.'" alt="profil"  class="image_contact"> cherki
+                    
+                    </div>';
+                    
+                }
+                echo $i;
+               }
+                   
+                 
+                    
+                
+            
+            if ($_SESSION["nbAmis"] == 0) {
+                echo '<div class="aucun-ami">
+                <h1>Aucun contact trouvé :( </h1>
+                <p>Allez en ajouter !</p>
+                <button onclick="window.location.href=\'code reseau/reseau.html\'">Rechercher des contacts</button></div>';
+            }
+            
+            ?>
             
         </div>
         </div>

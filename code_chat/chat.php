@@ -22,7 +22,7 @@ if (isset($_POST['enter'])) {
 }
 
 function loginForm()
-{   echo   $_SESSION['id'];
+{   echo  $_SESSION['nbAmis'];
     echo
     '<div id="loginform">
         <p>Veuillez saisir votre nom pour continuer!</p>
@@ -50,9 +50,12 @@ function loginForm()
     } else {
     ?>
         <div id="wrapper">
+        
             <div id="menu">
                 
-                <p class="welcome">Bienvenue, <b><?php echo $_SESSION['name']; ?></b></p>
+                <p class="welcome">Bienvenue, <b><?php  
+                                            print_r($_SESSION['amis_ids']);
+                                             ?></b></p>
                 <p class="logout"><a id="exit" href="#">Quitter la conversation</a></p>
             </div>
             <div id="chatbox">
