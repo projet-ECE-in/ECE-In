@@ -14,7 +14,42 @@ session_start();
  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
-
+<style>
+        .conversation {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .timestamp {
+            color: #999;
+            font-size: 0.8em;
+        }
+        .user_pseudo {
+            font-weight: bold;
+        }
+        .contact {
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .image_contact {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .couleur {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .contact-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    </style>
 
 <body>
     <header class="page-header header container-fluid">
@@ -67,7 +102,7 @@ session_start();
                 foreach ($_SESSION["pdp_a"] as $ami) {
                     $prenom = $_SESSION["amis_firstname"][$i];
                     $pdp= $ami;
-                    echo '<div class="contact" onclick="turn(\'' . $prenom . '\',\''.$pdp.'\')">';
+                    echo '<div class="contact" onclick="turn(' . $i . ',\'' . $prenom . '\',\'' . $pdp . '\')">';
                     echo '<img src="' . $ami . '" alt="profil" class="image_contact">';
                     echo '<div class="couleur">' . $prenom . '</div>';
                     echo '</div>';
@@ -102,23 +137,78 @@ session_start();
             <div class="right-panel-middle">
 
                 <div class="message"> 
-                    <div class="message_gauche">
-                        <div class="message_gauche_haut">
-                            <div class="message_gauche_haut_photo"></div>
-                            <div class="message_gauche_haut_nom">Nom</div>
-                        </div>
-                        <div class="message_gauche_bas">Message</div>
-                    </div>
-                    <div class="message_droite">
-                        <div class="message_droite_haut">
-                            <div class="message_droite_haut_photo"></div>
-                            <div class="message_droite_haut_nom">Nom</div>
-                        </div>
-                        <div class="message_droite_bas">Message</div>
-                    </div>
+                <script>
+                    var selectedFriendId;
+                    var selectedFriendPdp;
+                function turn(index, prenom, pdp) {
+                    // Mettre à jour l'en-tête de la conversation
+                    var photoDiv = document.getElementById('photo_conv');
+                    photoDiv.innerHTML = '<img src="' + pdp + '" class="image_contact">';
+                    document.getElementById('nom_conv').innerText = prenom;
+
+                    // Charger les messages de la conversation sélectionnée
+                    var messagesDiv = document.getElementById('messages_conv');
+                    messagesDiv.innerHTML = '';
+
+                    var messages = <?php echo json_encode($_SESSION['messages']); ?>;
+                    if (messages[index]) {
+                        messages[index].forEach(function(message) {
+                            var messageDiv = document.createElement('div');
+                            messageDiv.className = 'message';
+                            messageDiv.innerHTML = '<span class="user_pseudo">' + message.user_pseudo + ':</span> ' +
+                                                '<span class="text">' + message.message + '</span> ' +
+                                                '<div class="timestamp">' + message.timestamp + '</div>';
+                            messagesDiv.appendChild(messageDiv);
+                        });
+                    } else {
+                        messagesDiv.innerHTML = '<p>Aucun message dans cette conversation.</p>';
+                    }
+                }
+                function sendMessage() {
+                    var messageInput = document.getElementById('message_input');
+                    var message = messageInput.value;
+                   
+                    if (message.trim() === '') return;
+                    
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "envoie_message.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    
+                    xhr.onreadystatechange = function () {
+                        
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            
+                            // Ajouter le nouveau message dans la conversation actuelle
+                            var messagesDiv = document.getElementById('messages_conv');
+                            
+                            var messageDiv = document.createElement('div');
+                            messageDiv.className = 'message';
+                            messageDiv.innerHTML = '<span class="user_pseudo">' + message.user_pseudo + ':</span> ' +
+                                                '<span class="text">' + message + '</span> ' +
+                                                '<div class="timestamp">' + new Date().toLocaleString() + '</div>';
+                            messagesDiv.appendChild(messageDiv);
+
+                            // Effacer le champ de saisie
+                            messageInput.value = '';
+                        }
+                    };
+                    xhr.send("message=" + encodeURIComponent(message) + "&friend_id=" + selectedFriendId);
+                    
+                }
+            </script>
+            
+        <div id="photo_conv"></div>
+        <div id="messages_conv"><h2>Séléctionner une conversation !</h2></div>
+                
+                    
+                    
+                
+                    
+
                 </div>
             </div>
-            <div class="right-panel-bas"><input class="message_u" type="text" placeholder="Envoyer un message"></div>
+            <div class="right-panel-bas"><input class="message_u" type="text" id="message_input" placeholder="Envoyer un message">
+        <button onclick="sendMessage()">Envoyer</button></div>
             
 
         </div>

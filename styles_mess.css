@@ -116,6 +116,13 @@ header {
     
 
 }
+.sender {
+    text-align: right;
+    padding-left: 80%;
+}
+.receiver {
+    text-align: left;
+}
 .right-panel-middle{
     height: 78%;
     width: 100%;

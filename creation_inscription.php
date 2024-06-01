@@ -33,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Erreur: " . $stmt->error;
     }
-
+    header("location=Accueil/accueil.php");
+    exit();
     // Fermer la connexion
     $stmt->close();
 }
 
-$conn->close();
 ?>
