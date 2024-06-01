@@ -37,7 +37,7 @@
         echo "<small>{$message['timestamp']}</small>";
         echo "</div>";
     }
-   
+    
     ?>
     </div>
     

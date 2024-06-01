@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +53,10 @@
         </script>
         </div>
     </nav>
-
+    <?php
+    // Configuration de la base de données
+    echo $_SESSION['id'];
+    ?>
     <h1 id="intro"> Bienvenue sur ECE In ! </h1>
     <p id="texte"> ECE In est un réseau social professionnel pour la communauté ECE Paris. Que vous soyez étudiant/e
         de licence, master ou doctorat, étudiant/e apprenti dans une entreprise, étudiant/e qui cherche
