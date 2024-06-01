@@ -168,7 +168,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             $_SESSION["messages"] = $messages;
             // Rediriger vers la page d'accueil ou une autre page sécurisée
-            header("Location: code_chat/chat.php");
+            
+            header("Location: Accueil/accueil.php");
             exit();
         } else {
             
@@ -182,5 +183,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
-$conn->close();
+/*$conn->close();*/
 ?>
