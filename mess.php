@@ -30,7 +30,7 @@ session_start();
     <div class="navbar">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         
-        <a  href="accueil.html" ><div class="image-container"><img src="image_mess/accueil.png" alt="profil" height="95%" width="100%"></div><div class="cercleG"></div></a>
+        <a  href="Accueil/accueil.php" ><div class="image-container"><img src="image_mess/accueil.png" alt="profil" height="95%" width="100%"></div><div class="cercleG"></div></a>
 
       <div class="spass"></div>
       <div class="spass"></div>
@@ -62,21 +62,18 @@ session_start();
             
             <?php
             if(isset($_SESSION["amis_ids"])) {
-              
-                foreach ($_SESSION["pdp_a"] as $ami2) {
-                    echo $ami2;
-                }
-               
                 $i=0;
+                
                 foreach ($_SESSION["pdp_a"] as $ami) {
-                    $i++;
-                    echo '<div class="contact">
-                    <img src="'.$ami.'" alt="profil"  class="image_contact"> cherki
+                    
+
+                   
+                    echo '<div class="contact" >
+                    <img src="'.$ami.'" alt="profil"  class="image_contact" > <div class="couleur">'.$_SESSION["amis_firstname"][$i].'</div>
                     
                     </div>';
-                    
+                    $i++;                 
                 }
-                echo $i;
                }
                    
                  

@@ -69,20 +69,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     while ($row = $result->fetch_assoc()) {
                         $amis_ids[] = $row['id_utilisateur_ami'];
                     }
-                    // Stocker les ID des amis dans la session
-                    $_SESSION['amis_ids'] = $amis_ids;
                     
-                    for ($i = 0; $i < count($_SESSION["amis_ids"]); $i++) {
+                    // Stocker les ID des amis dans la session
+                    // Préparer et exécuter la première requête pour obtenir les IDs des amis
+                    $sql = "SELECT id_utilisateur_ami FROM ami WHERE id_utilisateur = ?";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("i", $_SESSION['id']);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $amis_ids = array();
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $amis_ids[] = $row['id_utilisateur_ami'];
+                        }
+
+                        // Stocker les ID des amis dans la session
+                        $_SESSION['amis_ids'] = $amis_ids;
+                            
+                        $sql = "SELECT utilisateur_pseudo FROM utilisateur WHERE id_utilisateur = ?";
+                        $stmt = $conn->prepare($sql);
+                        $amis_pseudo = array();
+                        foreach ($amis_ids as $i => $id_ami) {
+                            $stmt->bind_param("i", $id_ami);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($result->num_rows > 0) {
+                                $user = $result->fetch_assoc();
+                                $amis_pseudo[$i] = $user['utilisateur_pseudo'];
+                            } else {
+                                $amis_pseudo[$i] = null; // Ou une valeur par défaut si nécessaire
+                            }
+                        }
+                        $_SESSION['amis_pseudo'] = $amis_pseudo;
+                        $sql = "SELECT utilisateur_firstname FROM utilisateur WHERE id_utilisateur = ?";
+                        $stmt = $conn->prepare($sql);
+                        $amis_firstname = array();
+                        foreach ($amis_ids as $i => $id_ami) {
+                            $stmt->bind_param("i", $id_ami);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($result->num_rows > 0) {
+                                $user = $result->fetch_assoc();
+                                $amis_firstname[$i] = $user['utilisateur_firstname'];
+                            } else {
+                                $amis_firstname[$i] = null; // Ou une valeur par défaut si nécessaire
+                            }
+                        }
+                        $_SESSION['amis_firstname'] = $amis_firstname;
+                        // Préparer la requête pour obtenir les photos de profil
                         $sql = "SELECT utilisateur_profile_picture FROM utilisateur WHERE id_utilisateur = ?";
                         $stmt = $conn->prepare($sql);
-                        $stmt->bind_param("i", $amis_ids[$i]);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
-                        $user = $result->fetch_assoc();
-                        if ($i==1){$_SESSION['pdp_a'] = $user;}
-                        
-                    
+
+                        $pdp_a = array();
+                        foreach ($amis_ids as $i => $id_ami) {
+                            $stmt->bind_param("i", $id_ami);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            if ($result->num_rows > 0) {
+                                $user = $result->fetch_assoc();
+                                $pdp_a[$i] = $user['utilisateur_profile_picture'];  // Correction : utiliser le nom de la colonne
+                            } else {
+                                $pdp_a[$i] = null; // Ou une valeur par défaut si nécessaire
+                            }
+                        }
+
+                        // Stocker les chemins des photos de profil dans la session
+                        $_SESSION['pdp_a'] = $pdp_a;
+                    } else {
+                        // Gérer le cas où l'utilisateur n'a pas d'amis
+                        $_SESSION['amis_ids'] = [];
+                        $_SESSION['pdp_a'] = [];
                     }
+
                 } else {
                     echo "Aucun résultat trouvé.";
                 }
