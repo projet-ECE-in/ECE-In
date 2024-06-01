@@ -99,7 +99,25 @@ session_start();
                 
             </div>
             <div class="separator2"></div>
-            <div class="right-panel-middle"></div>
+            <div class="right-panel-middle">
+
+                <div class="message"> 
+                    <div class="message_gauche">
+                        <div class="message_gauche_haut">
+                            <div class="message_gauche_haut_photo"></div>
+                            <div class="message_gauche_haut_nom">Nom</div>
+                        </div>
+                        <div class="message_gauche_bas">Message</div>
+                    </div>
+                    <div class="message_droite">
+                        <div class="message_droite_haut">
+                            <div class="message_droite_haut_photo"></div>
+                            <div class="message_droite_haut_nom">Nom</div>
+                        </div>
+                        <div class="message_droite_bas">Message</div>
+                    </div>
+                </div>
+            </div>
             <div class="right-panel-bas"><input class="message_u" type="text" placeholder="Envoyer un message"></div>
             
 

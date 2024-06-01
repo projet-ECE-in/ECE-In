@@ -146,8 +146,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "Aucun résultat trouvé.";
                 }
             }
+            $user_id = $_SESSION['id']; // L'utilisateur actuel
+            $friend_id = "10"; // L'ID de l'ami (ou de l'autre utilisateur dans la conversation)
+
+            // Requête SQL pour récupérer les messages entre l'utilisateur actuel et l'ami
+            $sql = "
+                SELECT messages_id, message, timestamp, user_pseudo
+                FROM messages
+                WHERE (user_sender = ? AND user_receptor = ?)
+                OR (user_sender = ? AND user_receptor = ?)
+                ORDER BY timestamp ASC";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iiii", $user_id, $friend_id, $friend_id, $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $messages = [];
+            while ($row = $result->fetch_assoc()) {
+                $messages[] = $row;
+            }
+            $_SESSION["messages"] = $messages;
             // Rediriger vers la page d'accueil ou une autre page sécurisée
-            header("Location: mess.php");
+            header("Location: code_chat/chat.php");
             exit();
         } else {
             
