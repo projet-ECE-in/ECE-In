@@ -1,6 +1,6 @@
 <?php
 
-include 'connection.php';
+include '../connection.php';
 if (isset($_SESSION['id'])) {
     $user_id = $_SESSION['id'];
 } else {
@@ -75,17 +75,17 @@ if (isset($_SESSION['id'])) {
 
       <div class="spass"></div>
       <div class="spass"></div>
-      <a href="code reseau/reseau.html"><div class="image-container"><img src="image_mess/loupe.png" alt="loupe" height="95%" width="100%"></div><div class="item-nav"></div><div class="cercleG"></div></a>
+      <a href="code reseau/reseau.php"><div class="image-container"><img src="image_mess/loupe.png" alt="loupe" height="95%" width="100%"></div><div class="item-nav"></div><div class="cercleG"></div></a>
       <div class="spass"></div>
       <div class="spass"></div>
-      <a href="CodeVous/index.html" ><div class="image-container"><img src="image_mess/profil2.png" alt="profil" height="95%" width="100%"></div><div class="cercleG"></div></a>
+      <a href="CodeVous/index.php" ><div class="image-container"><img src="image_mess/profil2.png" alt="profil" height="95%" width="100%"></div><div class="cercleG"></div></a>
       <div class="spass"></div>
       <div class="spass"></div>
       <a href="#"><div class="image-container"><img src="image_mess/notif.png" alt="notif" height="95%" width="100%"></div></a>
       
       <div class="spass"></div>
       <div class="spass"></div>
-      <a href="#"><div class="image-container"><img src="image_mess/mess.png" alt="notif" height="95%" width="100%"></div><div class="cercle"></div></a>
+      <a href="mess.php"><div class="image-container"><img src="image_mess/mess.png" alt="notif" height="95%" width="100%"></div><div class="cercle"></div></a>
       <div class="spass"></div>
       <div class="spass"></div>
       <a href="code emploi/emploi.html"><div class="image-container"><img src="image_mess/empoie.png" alt="notif" height="95%" width="100%"></div></a>
@@ -125,7 +125,7 @@ if (isset($_SESSION['id'])) {
                 echo '<div class="aucun-ami">
                 <h1>Aucun contact trouvé :( </h1>
                 <p>Allez en ajouter !</p>
-                <button onclick="window.location.href=\'code reseau/reseau.html\'">Rechercher des contacts</button></div>';
+                <button onclick="window.location.href=\'code ../reseau/reseau.html\'">Rechercher des contacts</button></div>';
             }
             
             ?>

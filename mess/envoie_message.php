@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connection.php'; // Assurez-vous de lier votre fichier de connexion à la base de données
+include '../connection.php'; // Assurez-vous de lier votre fichier de connexion à la base de données
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
