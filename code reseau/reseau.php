@@ -54,16 +54,31 @@ include '../verfriend.php';
                     <input type="text" placeholder="Rechercher un ami" onkeyup="filterFriends()">
                     <ul>
                         <?php
-                        accepterami($user_id,$conn);
-                        $sql = "SELECT u.utilisateur_firstname, u.utilisateur_lastname, u.utilisateur_pseudo 
+                        $sql = "SELECT id_utilisateur_ami FROM ami WHERE id_utilisateur = ? AND ami_accept = 0";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("i",$user_id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                    
+                        $amis_ids = [];
+                    
+                        while($row = $result->fetch_assoc()){
+                            $amis_ids[]=$row['id_utilisateur_ami'];
+                        }
+                        $stmt->close();
+
+                        foreach($amis_ids as $amiid){
+                            accepterami($amiid,$user_id,$conn);
+                        }
+                        $sql = "SELECT u.utilisateur_firstname, u.utilisateur_lastname, u.utilisateur_pseudo , u.utilisateur_profile_picture
                                 FROM ami a 
                                 JOIN utilisateur u ON a.id_utilisateur_ami = u.id_utilisateur 
                                 WHERE a.id_utilisateur = $user_id AND a.ami_accept = 1";
                         $result = $conn->query($sql);
-
+                        
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                echo "<li>" . $row["utilisateur_firstname"]. " " . $row["utilisateur_lastname"]. " (" . $row["utilisateur_pseudo"]. ")</li>";
+                                echo "<li>" .$row["utilisateur_profile_picture"]. $row["utilisateur_firstname"]. " " . $row["utilisateur_lastname"]. " (" . $row["utilisateur_pseudo"]. ")</li>";
                             }
                         } else {
                             echo "0 résultats";
@@ -77,7 +92,7 @@ include '../verfriend.php';
                     <ul>
                         <?php
                         
-                        $stmt = $conn->prepare("SELECT id_utilisateur, utilisateur_pseudo FROM utilisateur WHERE id_utilisateur != ?");
+                        $stmt = $conn->prepare("SELECT id_utilisateur, utilisateur_pseudo, utilisateur_profile_picture FROM utilisateur WHERE id_utilisateur != ?");
                         $stmt->bind_param("i", $user_id);
                         $stmt->execute();
                         $result = $stmt->get_result();
@@ -93,21 +108,33 @@ include '../verfriend.php';
                             if ($check_friend_result->num_rows == 0) {
                                 ?>
                                 <div class ="suggestion">
-                                    <h3><?php echo "<li>" . htmlspecialchars($user['utilisateur_pseudo']) ;?></h3>
-                                    <?php 
-                                    $check_sql = "SELECT * FROM ami WHERE id_utilisateur = ?  AND id_utilisateur_ami = ?";
-                                    $check_stmt = $conn->prepare($check_sql);
-                                    $check_stmt->bind_param("ii", $user['id_utilisateur'], $user_id);
-                                    $check_stmt->execute();
-                                    $check_result = $check_stmt->get_result();
-                                    if ($check_result->num_rows > 0){
-                                        echo " <button class='ajouter-ami' data-id='" . htmlspecialchars($user['id_utilisateur']) . "'>accepter la demande</button></li>";
+                                    <?php
+                                    
+                                    if (!empty($user['utilisateur_profile_picture'])) {
+                                        
+                                        echo "<img src='" . htmlspecialchars($user['utilisateur_profile_picture']) . "' alt='Profile Picture' style='width:50px; height:50px;'>";
+                                    } else {
+                                        
+                                        echo "<img src='path/to/default/profile/picture.jpg' alt='Default Profile Picture' style='width:50px; height:50px;'>";
                                     }
-                                    else if($check_result->num_rows == 0){
-                                        echo " <button class='ajouter-ami' data-id='" . htmlspecialchars($user['id_utilisateur']) . "'>ajouter</button></li>";
-                                    }
-                                    $check_stmt->close();
                                     ?>
+                                    <h3><?php echo  htmlspecialchars($user['utilisateur_pseudo']) ;?></h3>
+                                    <div style="float: right;">
+                                        <?php 
+                                        $check_sql = "SELECT * FROM ami WHERE id_utilisateur = ?  AND id_utilisateur_ami = ?";
+                                        $check_stmt = $conn->prepare($check_sql);
+                                        $check_stmt->bind_param("ii", $user['id_utilisateur'], $user_id);
+                                        $check_stmt->execute();
+                                        $check_result = $check_stmt->get_result();
+                                        if ($check_result->num_rows > 0){
+                                            echo " <button class='ajouter-ami' data-id='" . htmlspecialchars($user['id_utilisateur']) . "'>accepter la demande</button></li>";
+                                        }
+                                        else if($check_result->num_rows == 0){
+                                            echo " <button class='ajouter-ami' data-id='" . htmlspecialchars($user['id_utilisateur']) . "'>ajouter</button></li>";
+                                        }
+                                        $check_stmt->close();
+                                        ?>
+                                    </div>
                                 </div>
                                 <?php
                             }
