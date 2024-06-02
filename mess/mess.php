@@ -88,7 +88,7 @@ if (isset($_SESSION['id'])) {
       <a href="mess.php"><div class="image-container"><img src="image_mess/mess.png" alt="notif" height="95%" width="100%"></div><div class="cercle"></div></a>
       <div class="spass"></div>
       <div class="spass"></div>
-      <a href="code emploi/emploi.html"><div class="image-container"><img src="image_mess/empoie.png" alt="notif" height="95%" width="100%"></div></a>
+      <a href="code emploi/emploi.php"><div class="image-container"><img src="image_mess/empoie.png" alt="notif" height="95%" width="100%"></div></a>
     </div>
 </div>
 <div class="separator"></div>
