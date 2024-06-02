@@ -7,6 +7,12 @@ body {
   color: black;
  }
 
+ .main {
+  min-height: 100vh; /* Assure que le contenu principal prend au moins la hauteur de la fenêtre */
+  padding-bottom: 60px; /* Espace pour le footer */
+  box-sizing: border-box; /* Inclut le padding dans la hauteur totale */
+}
+
 header {
   position: relative;
   width: 100%;
@@ -357,10 +363,15 @@ header {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 2px 6px 6px rgba(0, 139, 139, 0.3);
-  
-  
-  
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 50px;  /* ajustez la taille selon vos besoins */
+  height: 50px; /* ajustez la taille selon vos besoins */
+  background-size: 100%, 100%;
+}
+
   
 
 
@@ -552,6 +563,7 @@ textarea:invalid {
 .page-footer {
   background-color: #222;
   color: #ccc;
+  margin-top: 100px;
   padding: 60px 0 30px;
   position: relative;
   width: 100%;
@@ -614,4 +626,5 @@ textarea:invalid {
       margin: 0;
   }
 }
+
 */
