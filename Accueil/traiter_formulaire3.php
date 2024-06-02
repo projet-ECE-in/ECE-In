@@ -2,11 +2,11 @@
 date_default_timezone_set('Europe/Paris');
 
 // Connexion à la base de données
-include '../Session/session.php';
-$user_id = "3";
-$dsn = 'mysql:host=db;port=3300;dbname=ECEInDB';
+include '../connection.php';
+$user_id = "12";
+$dsn = 'mysql:host=db;port=3308;dbname=ecein';
 $username = 'root';
-$password = 'mypassword';
+$password = '';
 
 try {
     $pdo = new PDO($dsn, $username, $password);
@@ -47,9 +47,7 @@ $stmt->bindParam(':user_id', $user_id);
 // Exécution de la requête
 if ($stmt->execute()) {
     // Insertion réussie
-    header('Location: accueil.php');
-} else {
-    // Erreur lors de l'insertion
-    
+    header('accueil.php');
+} else {   
 }
 ?>
