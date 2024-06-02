@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     // Stocker les ID des amis dans la session
                     // Préparer et exécuter la première requête pour obtenir les IDs des amis
-                    $sql = "SELECT id_utilisateur_ami FROM ami WHERE id_utilisateur = ?";
+                    $sql = "SELECT id_utilisateur_ami FROM ami WHERE (id_utilisateur = ? and ami_accept=1)";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("i", $_SESSION['id']);
                     $stmt->execute();
