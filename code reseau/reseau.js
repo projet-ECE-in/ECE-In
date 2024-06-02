@@ -1,7 +1,3 @@
-function addFriend(friendName) {
-    alert('Vous avez ajouté ' + friendName + ' à vos amis.');
-}
-
 function filterFriends() {
     const searchInput = document.getElementById('friend-search').value.toLowerCase();
     const friends = document.querySelectorAll('.friend');

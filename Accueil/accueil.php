@@ -35,7 +35,7 @@ if (isset($_SESSION['id'])) {
         <div class="collapse navbar-collapse" id="main-navigation">
         <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="accueil.php"> <div class="image-container"><img src="Images/accueil.png" alt="Accueil"> <span>Accueil</span> </div> </a> </li>  
-        <li class="nav-item"><a class="nav-link" href="../code reseau/reseau.html"> <div class="image-container"><img src="Images/loupe.png" alt="Mon réseau"> <span>Mon Réseau</span> </div> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../code reseau/reseau.php"> <div class="image-container"><img src="Images/loupe.png" alt="Mon réseau"> <span>Mon Réseau</span> </div> </a> </li>
         <li class="nav-item"><a class="nav-link" href="../CodeVous/index.html"> <div class="image-container"><img src="Images/profil2.png" alt="Vous"> <span>Vous</span> </div> </a> </li>
         <li class="nav-item"><a class="nav-link" href="#"> <div class="image-container"><img src="Images/notif.png" alt="Notifications"> <span>Notifications</span> </div> </a> </li>
         <li class="nav-item"><a class="nav-link" href="../mess.php"> <div class="image-container"><img src="Images/mess.png" alt="Messagerie"> <span>Messagerie</span> </div> </a> </li>
