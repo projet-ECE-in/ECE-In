@@ -71,16 +71,13 @@ if (isset($_SESSION['id'])) {
             <div class="column"></div>
             <div class="column1">
                 <div class="columnHead">
-                    <h3 class="feature-title">Évènement de la semaine</h3>
+                    <h3 class="feature-title">Événement de la semaine</h3>
                     <div class="container-fluid">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner row w-100 mx-auto">
                                 <?php 
-                                $query2 = "SELECT DISTINCT utilisateur.*, post.* FROM ami LEFT JOIN utilisateur ON (
-                                (ami.id_utilisateur = utilisateur.id_utilisateur AND ami.id_utilisateur_ami = $user_id) OR
-                                (ami.id_utilisateur_ami = utilisateur.id_utilisateur AND ami.id_utilisateur = $user_id))
-                                LEFT JOIN post ON post.id_utilisateur = utilisateur.id_utilisateur WHERE 
-                                (ami.ami_accept = 1 OR post.id_utilisateur = $user_id OR post.id_utilisateur = 1)
+                                $query2 = "SELECT DISTINCT utilisateur.*, post.* FROM utilisateur LEFT JOIN post ON 
+                                post.id_utilisateur = utilisateur.id_utilisateur WHERE post.id_utilisateur = 1
                                 AND post.post0_event1 = 1 AND post.post_date <= CURDATE() 
                                 AND post.post_date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
 
@@ -96,6 +93,7 @@ if (isset($_SESSION['id'])) {
                                     echo '
                                     <div class="carousel-item col-md-15 ' . ($active ? 'active' : '') . '">
                                         <div class="card">
+                                            <h4 class="card-title">' . $row['post_content'] . '</h4>
                                             <img class="card-img-top img-fluid" src="' . $row['post_image'] . '" alt="logo">
                                             
                                         </div>
@@ -148,7 +146,7 @@ if (isset($_SESSION['id'])) {
                                     }
                                 });
                             </script>
-                            <button id="btn-evenement2">Évènement</button>
+                            <button id="btn-evenement2">Événement</button>
                             <div id="formulaire-container1" style="display: none;">
                                 <form action="traiter_formulaire.php" method="post" enctype="multipart/form-data">
                                     <label for="titre1">Titre :</label>
@@ -159,7 +157,7 @@ if (isset($_SESSION['id'])) {
                                     <input type="file" id="media1" name="media1" accept="image/*,video/*"><br>
                                     <label for="texte1">Texte :</label><br>
                                     <textarea id="texte1" name="texte1" rows="5" cols="40" required></textarea><br>
-                                    <input type="submit" value="Publier l'évènement!">
+                                    <input type="submit" value="Publier l'événement!">
                                 </form>
                             </div>
                             <script>
@@ -205,7 +203,7 @@ if (isset($_SESSION['id'])) {
                     (post.id_utilisateur = utilisateur.id_utilisateur) LEFT JOIN ami ON (
                     (ami.id_utilisateur = utilisateur.id_utilisateur AND ami.id_utilisateur_ami = $user_id) OR
                     (ami.id_utilisateur_ami = utilisateur.id_utilisateur AND ami.id_utilisateur = $user_id))
-                    WHERE (ami.ami_accept = 1 OR post.id_utilisateur = $user_id) AND (post.post0_event1 <> 1)
+                    WHERE (ami.ami_accept = 1) AND (post.post0_event1 <> 1)
                     ORDER BY post.post_date DESC";
                     
                     $result2 = mysqli_query($conn, $query2);
@@ -228,38 +226,36 @@ if (isset($_SESSION['id'])) {
                         }
                         echo '
                         <div class="feature-title">
-                            <div class="image">
+                            <div id="image1">
                                 <div class="header_publication">
                                     <img src="' . $row['utilisateur_profile_picture'] . '" alt="pp" width="50">
                                     <h4>' . $row['utilisateur_pseudo'] . '</h4>
                                 </div>
                                 <div class="body_publication">';
-                        if ($row['post0_event1'] == 0) {
-                            echo '<img src="' . $row['post_image'] . '">';
-                        } elseif (!is_null($row['post_image']) && (strpos($row['post_image'], '.mp4') !== false || strpos($row['post_image'], '.mov') !== false || strpos($row['post_image'], '.avi') !== false || strpos($row['post_image'], '.wmv') !== false)) {
-                            echo '<video src="' . $row['post_image'] . '" alt="video" width="150" controls></video>';
-                        } elseif ($row['post0_event1'] == 2) {
-                            echo '' . $row['post_content'] . '';
-                        }
+                                if (strpos($row['post_image'], '.jpg') !== false || strpos($row['post_image'], '.jpeg') !== false || strpos($row['post_image'], '.png') !== false || strpos($row['post_image'], '.gif') !== false || strpos($row['post_image'], '.webp') !== false) {
+                                    echo '<img src="' . $row['post_image'] . '" alt="logo" width="150">';
+                                } elseif (strpos($row['post_image'], '.mp4') !== false || strpos($row['post_image'], '.mov') !== false || strpos($row['post_image'], '.avi') !== false || strpos($row['post_image'], '.wmv') !== false) {
+                                    echo '<video src="' . $row['post_image'] . '" alt="video" width="150" controls></video>';
+                                }
                         echo '
                                 </div>
                                 <p>' . $row['post_content'] . '</p>
                                 <div class="footer_publication">
                                     <div class="like" data-post-id="' . $row['id_post'] . '">';
                         if ($post_like) {
-                            echo '<img src="../../images/icones/like_ok.png" alt="like" width="30">';
+                            echo '<img src="../Images/likeok.jpg" alt="like" width="30">';
                         } else {
-                            echo '<img src="../../images/icones/like.png" alt="like" width="30">';
+                            echo '<img src="../Images/like.jpg" alt="like" width="30">';
                         }
                         echo ' ' . $post_nombre_like . '
                                     </div>
                                     <div class="comment" data-post-id="' . $row['id_post'] . '">
                                         <a href="comment.php">
-                                            <img src="../../images/icones/comment.png" alt="comment" width="30">
+                                            <img src="../Images/comment.png" alt="comment" width="30">
                                         </a>
                                     </div>
                                     <div class="share">
-                                        <img src="../../images/icones/share.png" alt="comment" width="32">
+                                        <img src="../Images/share.png" alt="share" width="32">
                                     </div>
                                 </div>
                             </div>
@@ -271,9 +267,9 @@ if (isset($_SESSION['id'])) {
 
             <div class="column2">
                 <div class="columnHead">
-                    <h3 class="feature-title">Vos événements</h3>
+                    <h3 class="feature-title">Vos événements récents</h3>
                     <?php
-                    $query1 = "SELECT * FROM post WHERE (id_utilisateur = $user_id) AND post0_event1  = 1";
+                    $query1 = "SELECT * FROM post WHERE (id_utilisateur = $user_id) AND post0_event1  = 0 ORDER BY post.post_date DESC";
                     $result1 = mysqli_query($conn, $query1);
 
                     while ($row = mysqli_fetch_assoc($result1)) {
@@ -281,8 +277,8 @@ if (isset($_SESSION['id'])) {
                         <div class="feature-title">
                             <div class="image">';
 
-                        if (strpos($row['post_image'], '.jpg') !== false || strpos($row['post_image'], '.jpeg') !== false || strpos($row['post_image'], '.png') !== false || strpos($row['post_image'], '.gif') !== false) {
-                            echo '<img src="' . $row['post_image'] . '" alt="logo" width="150">';
+                        if (strpos($row['post_image'], '.jpg') !== false || strpos($row['post_image'], '.jpeg') !== false || strpos($row['post_image'], '.png') !== false || strpos($row['post_image'], '.gif') !== false || strpos($row['post_image'], '.webp') !== false) {
+                            echo '<img src="' . $row['post_image'] . '" alt="logo" width="270">';
                         } elseif (strpos($row['post_image'], '.mp4') !== false || strpos($row['post_image'], '.mov') !== false || strpos($row['post_image'], '.avi') !== false || strpos($row['post_image'], '.wmv') !== false) {
                             echo '<video src="' . $row['post_image'] . '" alt="video" width="150" controls></video>';
                         }

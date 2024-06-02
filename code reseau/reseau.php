@@ -34,7 +34,7 @@ include '../verfriend.php';
                 <a href="../code reseau/reseau.php"><div class="image-container"><img src="../image_mess/loupe.png" alt="loupe" height="95%" width="100%"></div><div class="item-nav"></div></a><div class="cercle"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../CodeVous/index.php"><div class="image-container"><img src="../image_mess/profil2.png" alt="profil" height="95%" width="100%"></div></a>
+                <a href="../CodeVous/index.html"><div class="image-container"><img src="../image_mess/profil2.png" alt="profil" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
                 <a href="#"><div class="image-container"><img src="../image_mess/notif.png" alt="notif" height="95%" width="100%"></div></a>

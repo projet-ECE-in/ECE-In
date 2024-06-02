@@ -9,7 +9,6 @@ body {
 
  .main {
   min-height: 100vh; /* Assure que le contenu principal prend au moins la hauteur de la fenêtre */
-  padding-bottom: 60px; /* Espace pour le footer */
   box-sizing: border-box; /* Inclut le padding dans la hauteur totale */
 }
 
@@ -160,8 +159,8 @@ header {
 .columnHead{
   background-color: #e7f0f1;
   border-radius: 10px;
-  min-height: 50vh;
-  max-height: 87vh;
+  min-height: 20vh;
+  max-height: 100vh;
   padding: 1vh;
   transition: 1s;
   width: 40vh;
@@ -339,37 +338,36 @@ header {
 }
 .slid-er .slides {
   display:inline-flex
-}
+} 
 
-.caroussel {
-  display: flex;
-  flex-direction: row ;
-  justify-content: space-around;
- 
-  overflow: hidden;
-  
 
-  
-}
-.caroussel .image {
-  box-shadow: none;
-  
-  
-}
-
-.caroussel .slide-content{
+.carousel {
   height: 100%;
-  background-color: #c3d3d2;;
+  background-color: #e7f0f1;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 2px 6px 6px rgba(0, 139, 139, 0.3);
+  display: flex;
+  flex-direction: row ;
+  justify-content: space-around;
 }
+
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   width: 50px;  /* ajustez la taille selon vos besoins */
   height: 50px; /* ajustez la taille selon vos besoins */
   background-size: 100%, 100%;
+}
+
+.card-title {
+  color: #333;
+  font-size: 1rem;
+  background-color: #e7f0f1;
+  font-weight: 700;
+  position: relative;
+  height: 25px;
+  margin-bottom: 0px;
 }
 
   
@@ -455,7 +453,7 @@ textarea:invalid {
   border-color: #ff0000;
 }
 
-.image {
+#image1 {
   box-shadow: 2px 6px 6px rgba(0, 139, 139, 0.5);
   border-radius: 10px;
   background-color: #c3d3d2;
@@ -464,11 +462,15 @@ textarea:invalid {
   padding-bottom: 4vh;
 }
 
-.image p{
+#image1 p{
   padding-top: 1vh;
   font-family: 'Lato' , sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  text-align: left;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 .body_publication{
@@ -559,11 +561,28 @@ textarea:invalid {
   animation: fillAnimation 1s linear forwards;
 }
 
+.image {
+  box-shadow: 2px 6px 6px rgba(0, 139, 139, 0.5);
+  border-radius: 10px;
+  background-color: #c3d3d2;
+  height: fit-content;
+  position: relative; 
+  padding-bottom: 0px;
+}
+
+.image p{
+  padding-top: 0px;
+  font-family: 'Lato' , sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+
 
 .page-footer {
   background-color: #222;
   color: #ccc;
-  margin-top: 100px;
+  margin-top: 0px;
   padding: 60px 0 30px;
   position: relative;
   width: 100%;
