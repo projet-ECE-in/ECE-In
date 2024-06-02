@@ -1,14 +1,5 @@
 <?php
-session_start();
-// Configuration de la base de données
-$servername = "localhost:3308";
-$username = "root";
-$password = "";  // Remplace par ton mot de passe de base de données si nécessaire
-$dbname = "ecein";
-
-// Connexion à la base de données
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+include 'connectionBDD.php'; // Assurez-vous de lier votre fichier de connexion à la base de données
 // Vérification de la connexion
 if ($conn->connect_error) {
     die("Connexion échouée: " . $conn->connect_error);
@@ -72,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     // Stocker les ID des amis dans la session
                     // Préparer et exécuter la première requête pour obtenir les IDs des amis
-                    $sql = "SELECT id_utilisateur_ami FROM ami WHERE id_utilisateur = ?";
+                    $sql = "SELECT id_utilisateur_ami FROM ami WHERE (id_utilisateur = ? and ami_accept=1)";
                     $stmt = $conn->prepare($sql);
                     $stmt->bind_param("i", $_SESSION['id']);
                     $stmt->execute();

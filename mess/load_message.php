@@ -1,6 +1,6 @@
 <?php
 
-include 'connection.php'; 
+include '../connection.php'; 
 
 if (isset($_SESSION['current_friend_id'])) {
     $user_id = $_SESSION['id'];

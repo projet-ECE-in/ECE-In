@@ -29,11 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $new_name, $email, $hashed_password);
 
     if ($stmt->execute()) {
-        echo "Inscription réussie!";
+        echo "<script>'Inscription réussie!';</script> ";
     } else {
         echo "Erreur: " . $stmt->error;
     }
-    header("location=Accueil/accueil.php");
+    header("Location: CodeVous/index.php");
     exit();
     // Fermer la connexion
     $stmt->close();
