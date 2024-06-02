@@ -140,30 +140,82 @@ session_start();
                 <script>
                     var selectedFriendId;
                     var selectedFriendPdp;
-                function turn(index, prenom, pdp) {
-                    // Mettre à jour l'en-tête de la conversation
-                    var photoDiv = document.getElementById('photo_conv');
-                    photoDiv.innerHTML = '<img src="' + pdp + '" class="image_contact">';
-                    document.getElementById('nom_conv').innerText = prenom;
+                    var selectedRealidfriend;
+                    tab=<?php echo json_encode($_SESSION["amis_ids"]); ?>;
+                    function turn(index, prenom, pdp) {
 
-                    // Charger les messages de la conversation sélectionnée
-                    var messagesDiv = document.getElementById('messages_conv');
-                    messagesDiv.innerHTML = '';
+                            selectedFriendId = index;
+                            selectedFriendPdp = pdp;
+                            selectedRealidfriend = tab[index];
+                            
+                            // Mettre à jour l'image de profil de la conversation
+                            var photoDiv = document.getElementById('photo_conv');
+                            photoDiv.innerHTML = '<img src="' + pdp + '" class="image_contact">';
 
-                    var messages = <?php echo json_encode($_SESSION['messages']); ?>;
-                    if (messages[index]) {
-                        messages[index].forEach(function(message) {
-                            var messageDiv = document.createElement('div');
-                            messageDiv.className = 'message';
-                            messageDiv.innerHTML = '<span class="user_pseudo">' + message.user_pseudo + ':</span> ' +
+                            // Charger les messages de la conversation sélectionnée
+                            var messagesDiv = document.getElementById('messages_conv');
+                            messagesDiv.innerHTML = '';
+
+                            var messages = <?php echo json_encode($_SESSION['messages']); ?>;
+                            if (messages[selectedFriendId]) {
+                                messages[selectedFriendId].forEach(function(message) {
+                                    var messageDiv = document.createElement('div');
+                                    messageDiv.className = 'message';
+                                    messageDiv.innerHTML = '<span class="user_pseudo">' + message.user_pseudo + '</span> ' +
                                                 '<span class="text">' + message.message + '</span> ' +
-                                                '<div class="timestamp">' + message.timestamp + '</div>';
-                            messagesDiv.appendChild(messageDiv);
-                        });
-                    } else {
-                        messagesDiv.innerHTML = '<p>Aucun message dans cette conversation.</p>';
-                    }
-                }
+                                                '<div class="timestamp">' + message.timestamp + '</div>'
+                                                + '<div class="timestamp">' + selectedRealidfriend + '</div>';
+
+                                    messagesDiv.appendChild(messageDiv);
+                                    
+                                });
+                            } else {
+                                messagesDiv.innerHTML = '<p>Aucun message dans cette conversation.</p>';
+                            }
+                            loadMessages();
+                            // Mettre à jour la session avec l'ID du contact sélectionné
+                            fetch('update_session.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    },
+                                    body: new URLSearchParams({
+                                        'friend_id': selectedRealidfriend
+                                    })
+                             
+                                })
+                                .then(response => response.text())
+                                .then(data => {
+                                    if (data !== "Session mise à jour") {
+                                        console.error("Erreur lors de la mise à jour de la session:", data);
+                                    }
+                                })
+                             
+                                
+                            }
+                           
+                            function loadMessages() {
+                                var xhr = new XMLHttpRequest();
+                                xhr.open('POST', 'load_message.php', true);
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                xhr.onreadystatechange = function () {
+                                    if (xhr.readyState === 4 && xhr.status === 200) {
+                                        var data = JSON.parse(xhr.responseText);
+                                        console.log("Messages loaded:", data);
+                                        var messagesDiv = document.getElementById('messages_conv');
+                                        messagesDiv.innerHTML = '';
+                                        data.forEach(function(message) {
+                                            var messageDiv = document.createElement('div');
+                                            messageDiv.className = 'message';
+                                            messageDiv.innerHTML = '<span class="user_pseudo">' + message.user_pseudo + '</span> ' +
+                                                                '<span class="text">' + message.message + '</span> ' +
+                                                                '<div class="timestamp">' + message.timestamp + '</div>';
+                                            messagesDiv.appendChild(messageDiv);
+                                        });
+                                    }
+                                };
+                                xhr.send();
+                            }
                 function sendMessage() {
                     var messageInput = document.getElementById('message_input');
                     var message = messageInput.value;
@@ -183,7 +235,7 @@ session_start();
                             
                             var messageDiv = document.createElement('div');
                             messageDiv.className = 'message';
-                            messageDiv.innerHTML = '<span class="user_pseudo">' + message.user_pseudo + ':</span> ' +
+                            messageDiv.innerHTML = '<span class="user_pseudo">' + <?php echo json_encode($_SESSION["pseudo"]); ?> + '</span> ' +
                                                 '<span class="text">' + message + '</span> ' +
                                                 '<div class="timestamp">' + new Date().toLocaleString() + '</div>';
                             messagesDiv.appendChild(messageDiv);
@@ -195,6 +247,9 @@ session_start();
                     xhr.send("message=" + encodeURIComponent(message) + "&friend_id=" + selectedFriendId);
                     
                 }
+            setInterval(loadMessages, 500);
+               
+             
             </script>
             
         <div id="photo_conv"></div>
@@ -209,6 +264,8 @@ session_start();
             </div>
             <div class="right-panel-bas"><input class="message_u" type="text" id="message_input" placeholder="Envoyer un message">
         <button onclick="sendMessage()">Envoyer</button></div>
+        
+        
             
 
         </div>

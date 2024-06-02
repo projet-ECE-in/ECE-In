@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['message'], $_POST['friend_id'])) {
         $message = $_POST['message'];
         
-        $friend_id = 10;
+        $friend_id = $_SESSION['current_friend_id'];
         $user_id = $_SESSION['id']; // ID de l'utilisateur actuel
         $user_pseudo = $_SESSION['pseudo']; // Pseudo de l'utilisateur actuel
         $timestamp = date('Y-m-d H:i:s');
