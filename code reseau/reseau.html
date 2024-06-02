@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réseau Social</title>
+    <link rel="stylesheet" href="reseau.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header class="page-header header container-fluid">
+        <div class="header-content">
+            <h1 id="description">ECE In : Social Media Professionnel de l'ECE Paris</h1>
+            <img id="logo" src="../Images/Logo_ECEIn.png" alt="Logo">
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="navbar">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a href="../accueil.html"><div class="image-container"><img src="../image_mess/accueil.png" alt="profil" height="95%" width="100%"></div></a>
+                <div class="spass"></div>
+                <div class="spass"></div>
+                <a href="../code reseau/reseau.html"><div class="image-container"><img src="../image_mess/loupe.png" alt="loupe" height="95%" width="100%"></div><div class="item-nav"></div></a><div class="cercle"></div></a>
+                <div class="spass"></div>
+                <div class="spass"></div>
+                <a href="../CodeVous/index.html"><div class="image-container"><img src="../image_mess/profil2.png" alt="profil" height="95%" width="100%"></div></a>
+                <div class="spass"></div>
+                <div class="spass"></div>
+                <a href="#"><div class="image-container"><img src="../image_mess/notif.png" alt="notif" height="95%" width="100%"></div></a>
+                <div class="spass"></div>
+                <div class="spass"></div>
+                <a href="../mess.php"><div class="image-container"><img src="../image_mess/mess.png" alt="notif" height="95%" width="100%"></div></a>
+                <div class="spass"></div>
+                <div class="spass"></div>
+                <a href="../code emploi/emploi.html"><div class="image-container"><img src="../image_mess/empoie.png" alt="notif" height="95%" width="100%"></div></a>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="right-panel">
+            <div class="friends-suggestions-container">
+                <section id="friends" class="friends-section">
+                    <h2>Mes Amis</h2>
+                    <input type="text" id="friend-search" placeholder="Rechercher des amis..." onkeyup="filterFriends()">
+                    <div class="friend-list">
+                        <div class="friend">
+                            <img src="../Images/pdp1.jpg" alt="Ami 1" class="friend-photo">
+                            <div class="friend-info">
+                                <h3>Robert Oppenheimer</h3>
+                                <p>Description : Passionné par la technologie et le développement web.</p>
+                            </div>
+                        </div>
+                        <div class="friend">
+                            <img src="../Images/pdp4.jpg" alt="Ami 2" class="friend-photo">
+                            <div class="friend-info">
+                                <h3>Marie Curie</h3>
+                                <p>Description : Chercheuse en physique et chimie.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="suggestions" class="suggestions-section">
+                    <h2>Suggestions d'amis</h2>
+                    <input type="text" id="suggestion-search" placeholder="Rechercher des suggestions..." onkeyup="filterSuggestions()">
+                    <div class="suggestion-list">
+                        <div class="suggestion">
+                            <img src="../Images/pdp3.jpg" alt="Suggestion 1" class="suggestion-photo">
+                            <div class="suggestion-info">
+                                <h3>Pierre Curie</h3>
+                                <p>Ami de Marie Curie</p>
+                                <button onclick="addFriend('Pierre Curie')">Ajouter</button>
+                            </div>
+                        </div>
+                        <div class="suggestion">
+                            <img src="../Images/pdp2.jpg" alt="Suggestion 2" class="suggestion-photo">
+                            <div class="suggestion-info">
+                                <h3>Albert Einstein</h3>
+                                <p>Ami de Jean Dupont</p>
+                                <button onclick="addFriend('Albert Einstein')">Ajouter</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src ="reseau.js"></script>
+</body>
+</html>
