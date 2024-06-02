@@ -44,7 +44,7 @@ session_start();
             <div id="profile">
                 <div id="profile-picture-container">
                     <img id="profile-picture" src="<?php echo isset($_SESSION['pdp_u']) ? $_SESSION['pdp_u'] : 'default_profile.png'; ?>" alt="Profile Picture">
-                    <a href="test.php" class="btn">modifier la photo de profil</a>
+                    <a href="file.php" class="btn">modifier la photo de profil</a>
                 </div>
                 <div id="profile-info">
                     <form method="POST" action="">

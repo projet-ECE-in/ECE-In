@@ -125,7 +125,7 @@ if (isset($_SESSION['id'])) {
                 echo '<div class="aucun-ami">
                 <h1>Aucun contact trouvé :( </h1>
                 <p>Allez en ajouter !</p>
-                <button onclick="window.location.href=\'code ../reseau/reseau.html\'">Rechercher des contacts</button></div>';
+                <button onclick="window.location.href=\'../code reseau/reseau.php\'">Rechercher des contacts</button></div>';
             }
             
             ?>

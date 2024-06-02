@@ -40,7 +40,7 @@ include '../verfriend.php';
                 <a href="#"><div class="image-container"><img src="../image_mess/notif.png" alt="notif" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../mess.php"><div class="image-container"><img src="../image_mess/mess.png" alt="notif" height="95%" width="100%"></div></a>
+                <a href="../mess/mess.php"><div class="image-container"><img src="../image_mess/mess.png" alt="notif" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
                 <a href="../code emploi/emploi.php"><div class="image-container"><img src="../image_mess/empoie.png" alt="notif" height="95%" width="100%"></div></a>
