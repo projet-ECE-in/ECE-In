@@ -1,11 +1,11 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 // Connexion à la base de données
-include '../Session/session.php';
-$user_id = "3";
-$dsn = 'mysql:host=db;port=3300;dbname=ECEInDB';
+include '../connection.php';
+$user_id = "12";
+$dsn = 'mysql:host=db;port=3308;dbname=ecein';
 $username = 'root';
-$password = 'mypassword';
+$password = '';
 
 try {
     $pdo = new PDO($dsn, $username, $password);
@@ -21,7 +21,7 @@ $texte = $_POST['texte'];
 $image = $_FILES['media']['name'];
 
 // Déplacement du fichier vers un emplacement de votre choix
-$cheminImage = '../../images/posts/' . $image;
+$cheminImage = '../Images/' . $image;
 move_uploaded_file($_FILES['media']['tmp_name'], $cheminImage);
 $date = date('Y-m-d H:i:s');
 // Construction de la requête SQL
@@ -43,7 +43,7 @@ if ($stmt->execute()) {
     // Insertion réussie
 
     // Rechargement de la page d'accueil
-    header('Location: accueil.php');
+    header('accueil.php');
     exit();
 } else {
     // Erreur lors de l'insertion
