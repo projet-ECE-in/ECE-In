@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,40 +21,40 @@ session_start();
     <div class="wrapper">
         <div class="navbar">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a href="../front.html"><div class="image-container"><img src="image_mess/accueil.png" alt="profil" height="95%" width="100%"></div></a>
+                <a href="../front.html"><div class="image-container"><img src="image_mess/accueil.png" alt="Accueil" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../code reseau/reseau.html"><div class="image-container"><img src="image_mess/loupe.png" alt="loupe" height="95%" width="100%"></div><div class="item-nav"></div></a>
+                <a href="../code reseau/reseau.php"><div class="image-container"><img src="image_mess/loupe.png" alt="Recherche" height="95%" width="100%"></div><div class="item-nav"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="index.html"><div class="image-container"><img src="image_mess/profil2.png" alt="profil" height="95%" width="100%"></div><div class="cercle"></div></a>
+                <a href="index.html"><div class="image-container"><img src="image_mess/profil2.png" alt="Profil" height="95%" width="100%"></div><div class="cercle"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="#"><div class="image-container"><img src="image_mess/notif.png" alt="notif" height="95%" width="100%"></div></a>
+                <a href="#"><div class="image-container"><img src="image_mess/notif.png" alt="Notifications" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../mess.html"><div class="image-container"><img src="image_mess/mess.png" alt="notif" height="95%" width="100%"></div></a>
+                <a href="../mess.html"><div class="image-container"><img src="image_mess/mess.png" alt="Messages" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../code emploi/emploi.html"><div class="image-container"><img src="image_mess/empoie.png" alt="notif" height="95%" width="100%"></div></a>
+                <a href="../code emploi/emploi.html"><div class="image-container"><img src="image_mess/emploie.png" alt="Emploi" height="95%" width="100%"></div></a>
             </div>
         </div>
         <div class="milieux">
             <div id="profile">
                 <div id="profile-picture-container">
-                    <img id="profile-picture" src="<?php echo $_SESSION['pdp_u']; ?>" alt="Profile Picture">
+                    <img id="profile-picture" src="<?php echo isset($_SESSION['pdp_u']) ? $_SESSION['pdp_u'] : 'default_profile.png'; ?>" alt="Profile Picture">
                     <input type="file" id="upload-photo" accept="image/*">
                 </div>
                 <div id="profile-info">
                     <form method="POST" action="">
                         <label for="lastname">Nom:</label>
-                        <input type="text" id="lastname" name="lastname" value="<?php echo $_SESSION['name']; ?>" readonly>
+                        <input type="text" id="lastname" name="lastname" value="<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>" readonly>
 
                         <label for="firstname">Prénom:</label>
-                        <input type="text" id="firstname" name="firstname" value="<?php echo $_SESSION['firstname']; ?>" readonly>
+                        <input type="text" id="firstname" name="firstname" value="<?php echo isset($_SESSION['firstname']) ? $_SESSION['firstname'] : ''; ?>" readonly>
 
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" value="<?php echo $_SESSION['email']; ?>" readonly>
+                        <input type="email" id="email" name="email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" readonly>
                     </form>
                 </div>
             </div>
@@ -94,7 +94,7 @@ session_start();
                 <h2>CV</h2>
                 <div id="cv-output">
                     <!-- Le CV de l'utilisateur serait affiché ici -->
-                    <iframe src="<?php echo $_SESSION['cv']; ?>" width="100%" height="400px"></iframe>
+                    <iframe src="<?php echo isset($_SESSION['cv']) ? $_SESSION['cv'] : 'default_cv.pdf'; ?>" width="100%" height="400px"></iframe>
                 </div>
             </section>
 
