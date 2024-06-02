@@ -36,7 +36,7 @@ session_start();
                 <a href="../mess.html"><div class="image-container"><img src="image_mess/mess.png" alt="Messages" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../code emploi/emploi.html"><div class="image-container"><img src="image_mess/emploie.png" alt="Emploi" height="95%" width="100%"></div></a>
+                <a href="../code emploi/emploi.php"><div class="image-container"><img src="image_mess/emploie.png" alt="Emploi" height="95%" width="100%"></div></a>
             </div>
         </div>
         <div class="milieux">

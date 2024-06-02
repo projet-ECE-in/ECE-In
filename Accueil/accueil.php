@@ -40,7 +40,7 @@ if (isset($_SESSION['id'])) {
             <li class="nav-item"><a class="nav-link" href="../CodeVous/index.php"> <div class="image-container"><img src="Images/profil2.png" alt="Vous"> <span>Vous</span> </div> </a> </li>
             <li class="nav-item"><a class="nav-link" href="#"> <div class="image-container"><img src="Images/notif.png" alt="Notifications"> <span>Notifications</span> </div> </a> </li>
             <li class="nav-item"><a class="nav-link" href="../mess.php"> <div class="image-container"><img src="Images/mess.png" alt="Messagerie"> <span>Messagerie</span> </div> </a> </li>
-            <li class="nav-item"><a class="nav-link" href="../code emploi/emploi.html"> <div class="image-container"><img src="Images/emploi.png" alt="Emplois"> <span>Emplois</span> </div> </a> </li>
+            <li class="nav-item"><a class="nav-link" href="../code emploi/emploi.php"> <div class="image-container"><img src="Images/emploi.png" alt="Emplois"> <span>Emplois</span> </div> </a> </li>
             </ul>
             <script> 
             $(document).ready(function(){
