@@ -1,5 +1,10 @@
 <?php
-session_start();
+
+include 'connection.php';
+if (isset($_SESSION['id'])) {
+    $user_id = $_SESSION['id'];
+} else {
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +16,8 @@ session_start();
     <link rel="stylesheet" href="styles_mess.css">
     <link rel="stylesheet"
  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+ <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <style>
@@ -91,7 +97,7 @@ session_start();
             <h1>Messagerie</h1>
         </div>
         
-            <input class="left-middle" type="text" placeholder="Rechercher un contact">
+            
         
         <div class="left-panel-bas">
             
@@ -143,7 +149,7 @@ session_start();
                     var selectedRealidfriend;
                     tab=<?php echo json_encode($_SESSION["amis_ids"]); ?>;
                     function turn(index, prenom, pdp) {
-
+                            
                             selectedFriendId = index;
                             selectedFriendPdp = pdp;
                             selectedRealidfriend = tab[index];
@@ -153,7 +159,7 @@ session_start();
                             photoDiv.innerHTML = '<img src="' + pdp + '" class="image_contact">';
 
                             // Charger les messages de la conversation sélectionnée
-                            var messagesDiv = document.getElementById('messages_conv');
+                            var messagesDiv = document.getElementById('test');
                             messagesDiv.innerHTML = '';
 
                             var messages = <?php echo json_encode($_SESSION['messages']); ?>;
@@ -165,14 +171,14 @@ session_start();
                                                 '<span class="text">' + message.message + '</span> ' +
                                                 '<div class="timestamp">' + message.timestamp + '</div>'
                                                 + '<div class="timestamp">' + selectedRealidfriend + '</div>';
-
+                                    
                                     messagesDiv.appendChild(messageDiv);
                                     
                                 });
                             } else {
                                 messagesDiv.innerHTML = '<p>Aucun message dans cette conversation.</p>';
                             }
-                            loadMessages();
+                          
                             // Mettre à jour la session avec l'ID du contact sélectionné
                             fetch('update_session.php', {
                                     method: 'POST',
@@ -195,28 +201,21 @@ session_start();
                             }
                            
                             function loadMessages() {
-                                var xhr = new XMLHttpRequest();
-                                xhr.open('POST', 'load_message.php', true);
-                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                                xhr.onreadystatechange = function () {
-                                    if (xhr.readyState === 4 && xhr.status === 200) {
-                                        var data = JSON.parse(xhr.responseText);
-                                        console.log("Messages loaded:", data);
-                                        var messagesDiv = document.getElementById('messages_conv');
-                                        messagesDiv.innerHTML = '';
-                                        data.forEach(function(message) {
-                                            var messageDiv = document.createElement('div');
-                                            messageDiv.className = 'message';
-                                            messageDiv.innerHTML = '<span class="user_pseudo">' + message.user_pseudo + '</span> ' +
-                                                                '<span class="text">' + message.message + '</span> ' +
-                                                                '<div class="timestamp">' + message.timestamp + '</div>';
-                                            messagesDiv.appendChild(messageDiv);
-                                        });
-                                    }
-                                };
-                                xhr.send();
-                            }
-                function sendMessage() {
+                                    $.ajax({
+                                        url: "load_message.php",
+                                        method: "POST",
+                                        cache: false,
+                                        success: function (data) {
+                                            $("#test").html(data); // Insère le log de chat dans la #test div
+                                        },
+                                        error: function () {
+                                            console.log("Erreur lors du chargement de la conversation.");
+                                        }
+                                    });
+                                }
+                                
+                                
+        function sendMessage() {
                     var messageInput = document.getElementById('message_input');
                     var message = messageInput.value;
                    
@@ -247,13 +246,14 @@ session_start();
                     xhr.send("message=" + encodeURIComponent(message) + "&friend_id=" + selectedFriendId);
                     
                 }
-            setInterval(loadMessages, 500);
+            setInterval(loadMessages, 100);
                
              
             </script>
             
-        <div id="photo_conv"></div>
-        <div id="messages_conv"><h2>Séléctionner une conversation !</h2></div>
+  
+        <div id="test"><h2>Séléctionner une conversation !</h2></div>
+      
                 
                     
                     
