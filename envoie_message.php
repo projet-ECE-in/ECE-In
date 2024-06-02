@@ -3,6 +3,7 @@ session_start();
 include 'connection.php'; // Assurez-vous de lier votre fichier de connexion à la base de données
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     if (isset($_POST['message'], $_POST['friend_id'])) {
         $message = $_POST['message'];
         

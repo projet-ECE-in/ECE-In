@@ -1,6 +1,4 @@
 <?php
-session_start();
-// Configuration de la base de données
 $servername = "localhost:3308";
 $username = "root";
 $password = "";  // Remplace par ton mot de passe de base de données si nécessaire
@@ -8,20 +6,7 @@ $dbname = "ecein";
 
 // Connexion à la base de données
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("Connexion échouée: " . $conn->connect_error);
-}
-
-// Vérifier si le formulaire est soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer les données du formulaire
-    $name = $_POST['name'];
-    $password = $_POST['password'];
-
-    // Préparer et exécuter la requête SQL pour récupérer l'utilisateur
-    $sql = "SELECT * FROM utilisateur WHERE utilisateur_pseudo = ?";
+$sql = "SELECT * FROM utilisateur WHERE utilisateur_pseudo = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $name);
     $stmt->execute();
@@ -200,13 +185,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Mot de passe incorrect";
         }
     } else {
-       
+        echo "Utilisateur non trouvé.";
     }
 
     // Fermer la connexion
     $stmt->close();
-}
 
-/*$conn->close();*/
+
+
 
 ?>
+
