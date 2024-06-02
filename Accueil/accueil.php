@@ -125,7 +125,7 @@ if (isset($_SESSION['id'])) {
                         <a href="../CodeVous/index.html">
                             <img src="<?php echo $row3['utilisateur_profile_picture']; ?>" alt="logo" width="50">
                         </a>
-                        <button>Commencer un post</button>
+                        <button>Faire une publication</button>
                     </div>
                     <div class="Objet">
                         <button id="btn-evenement">Photo/Vidéo</button>
@@ -302,6 +302,30 @@ if (isset($_SESSION['id'])) {
         </div>
         <div class="column"></div>
     </div>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h6 class="text-uppercase font-weight-bold">Localisation</h6>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.3706925053507!2d2.2860177756499986!3d48.85114130121773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67151e3c16d05%3A0x1e3446766ada1337!2s10%20Rue%20Sextius%20Michel%2C%2075015%20Paris!5e0!3m2!1sen!2sfr!4v1685744650557!5m2!1sen!2sfr"
+                        width="50%" height="70%" style="border-radius:10px; border: none;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <p> <br> 10 Rue Sextius Michel, 75015 Paris, France <br> </p> 
+                </div>               
+                    
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                    <p>info@webDynamique.ece.fr <br> 
+                    +33 01 02 03 04 05 <br>                  
+                    </p>
+                </div>
+            </div>
+            <div class="footer-copyright text-center">&copy; 2024 ECE In. Tous droits réservés.</div>
+        </div>
+    </footer>
 
 </body>
 </html>

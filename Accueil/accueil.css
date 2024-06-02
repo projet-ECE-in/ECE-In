@@ -130,7 +130,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1vh;
-  position: fixed;
+  position: absolute;
   transition: 1s;
 }
 
@@ -146,7 +146,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1vh;
-  position: fixed;
+  position: absolute;
   right: 3vh;
   transition: 1s;
 }
@@ -547,3 +547,71 @@ textarea:invalid {
   background-color: darkcyan;
   animation: fillAnimation 1s linear forwards;
 }
+
+
+.page-footer {
+  background-color: #222;
+  color: #ccc;
+  padding: 60px 0 30px;
+  position: relative;
+  width: 100%;
+ }
+
+ .footer-copyright {
+  color: #666;
+  padding: 40px 0;
+ }
+
+
+
+
+/*
+.page-footer {
+  margin: 3vh;
+  border-radius: 10px;
+  color: #e7f0f1;
+  padding: 20px;
+  margin-top: 1vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+  margin-left: 47vh;
+ 
+}
+
+.page-footer .row{
+  background-color: rgba(11, 91, 101, 1);
+  border-radius: 10px;
+}
+.page-footer .row .col-lg-8.col-md-8.col-sm-12{
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  border-radius: 10px;
+}*/
+
+/*
+@media (max-width: 575.98px) {
+  .description {
+      left: 0;
+      padding: 0 15px;
+      position: absolute;
+      top: 10%;
+      transform: none;
+      text-align: center;
+  }
+
+  .description h1 {
+      font-size: 2em;
+  }
+
+  .description p {
+      font-size: 1.2rem;
+  }
+
+  .features {
+      margin: 0;
+  }
+}
+*/
