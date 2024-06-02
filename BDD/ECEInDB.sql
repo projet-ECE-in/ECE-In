@@ -135,16 +135,7 @@ CREATE TABLE `envoyer` (
 -- Structure de la table `messages`
 --
 
-CREATE TABLE `messages` (
-  `messages_id` int NOT NULL AUTO_INCREMENT,
-  `user_receptor` int DEFAULT NULL,
-  `user_sender` int DEFAULT NULL,
-  `message` longtext,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `link` longtext,
-  `user_pseudo` varchar(255) NOT NULL,
-  PRIMARY KEY (`messages_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 --
 -- Déchargement des données de la table `messages`

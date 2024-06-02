@@ -1,5 +1,9 @@
 <?php
-session_start();
+include '../connection.php';
+if (isset($_SESSION['id'])) {
+    $user_id = $_SESSION['id'];
+} else {
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +35,7 @@ session_start();
         <div class="collapse navbar-collapse" id="main-navigation">
         <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="accueil.php"> <div class="image-container"><img src="Images/accueil.png" alt="Accueil"> <span>Accueil</span> </div> </a> </li>  
-        <li class="nav-item"><a class="nav-link" href="../code reseau/reseau.html"> <div class="image-container"><img src="Images/loupe.png" alt="Mon réseau"> <span>Mon Réseau</span> </div> </a> </li>
+        <li class="nav-item"><a class="nav-link" href="../code reseau/reseau.php"> <div class="image-container"><img src="Images/loupe.png" alt="Mon réseau"> <span>Mon Réseau</span> </div> </a> </li>
         <li class="nav-item"><a class="nav-link" href="../CodeVous/index.html"> <div class="image-container"><img src="Images/profil2.png" alt="Vous"> <span>Vous</span> </div> </a> </li>
         <li class="nav-item"><a class="nav-link" href="#"> <div class="image-container"><img src="Images/notif.png" alt="Notifications"> <span>Notifications</span> </div> </a> </li>
         <li class="nav-item"><a class="nav-link" href="../mess.php"> <div class="image-container"><img src="Images/mess.png" alt="Messagerie"> <span>Messagerie</span> </div> </a> </li>
@@ -53,10 +57,7 @@ session_start();
         </script>
         </div>
     </nav>
-    <?php
-    // Configuration de la base de données
-    echo $_SESSION['id'];
-    ?>
+
     <h1 id="intro"> Bienvenue sur ECE In ! </h1>
     <p id="texte"> ECE In est un réseau social professionnel pour la communauté ECE Paris. Que vous soyez étudiant/e
         de licence, master ou doctorat, étudiant/e apprenti dans une entreprise, étudiant/e qui cherche
@@ -69,11 +70,11 @@ session_start();
         <div class="column"></div>
         <div class="column1">
             <div class="columnHead">
-                <h3 class="feature-title">Évènements de la semaine</h3>
+                <h3 class="feature-title">Évènement de la semaine</h3>
                 <div class="container-fluid">
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner row w-100 mx-auto">
-                            <?php
+                            <?php 
                             $query2 = "SELECT DISTINCT utilisateur.*, post.* FROM ami LEFT JOIN utilisateur ON (
                             (ami.id_utilisateur = utilisateur.id_utilisateur AND ami.id_utilisateur_ami = $user_id) OR
                             (ami.id_utilisateur_ami = utilisateur.id_utilisateur OR ami.id_utilisateur_ami = $user_id))
@@ -83,10 +84,10 @@ session_start();
                             AND post.post_date <= DATE_ADD(CURDATE(), INTERVAL 7 DAY)";
 
                             $query3 = "SELECT * FROM utilisateur WHERE id_utilisateur = $user_id";
-                            $result3 = mysqli_query($db_handle, $query3);
+                            $result3 = mysqli_query($conn, $query3);
                             $row3 = mysqli_fetch_assoc($result3);
 
-                            $result2 = mysqli_query($db_handle, $query2);
+                            $result2 = mysqli_query($conn, $query2);
 
                             $active = true;
 
@@ -121,10 +122,10 @@ session_start();
             <div class="feedHead">
                 <div class="post">
                     <div class="PostHead">
-                        <a href="../Vous/vous.php">
+                        <a href="../CodeVous/index.html">
                             <img src="<?php echo $row3['utilisateur_profile_picture']; ?>" alt="logo" width="50">
                         </a>
-                        <button>Commencer un post</button>
+                        <button>Faire une publication</button>
                     </div>
                     <div class="Objet">
                         <button id="btn-evenement">Photo/Vidéo</button>
@@ -209,10 +210,10 @@ session_start();
                 WHERE (ami.ami_accept = 1 OR post.id_utilisateur = $user_id) AND (post.post0_event1 <> 1)
                 ORDER BY post.post_date DESC";
                 
-                $result2 = mysqli_query($db_handle, $query2);
+                $result2 = mysqli_query($conn, $query2);
                 while ($row = mysqli_fetch_assoc($result2)) {
                     $like_state = "SELECT * FROM `aime` WHERE id_post = " . $row['id_post'] . " AND id_utilisateur = " . $user_id;
-                    $result_like = mysqli_query($db_handle, $like_state);
+                    $result_like = mysqli_query($conn, $like_state);
                     $post_like = "";
                     if ($result_like->num_rows > 0) {
                         $row_like = $result_like->fetch_assoc();
@@ -221,7 +222,7 @@ session_start();
                     $nombre_like = "SELECT COUNT(*) AS like_count
                     FROM `aime`
                     WHERE id_post = " . $row['id_post'] . " AND aime_state = 1";
-                    $result_nombre_like = mysqli_query($db_handle, $nombre_like);
+                    $result_nombre_like = mysqli_query($conn, $nombre_like);
                     $post_nombre_like = "";
                     if ($result_nombre_like->num_rows > 0) {
                         $row_nombre_like = $result_nombre_like->fetch_assoc();
@@ -275,7 +276,7 @@ session_start();
                 <h3 class="feature-title">Vos événements</h3>
                 <?php
                 $query1 = "SELECT * FROM post WHERE (id_utilisateur = $user_id) AND post0_event1  = 1";
-                $result1 = mysqli_query($db_handle, $query1);
+                $result1 = mysqli_query($conn, $query1);
 
                 while ($row = mysqli_fetch_assoc($result1)) {
                     echo '
@@ -301,6 +302,30 @@ session_start();
         </div>
         <div class="column"></div>
     </div>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                    <h6 class="text-uppercase font-weight-bold">Localisation</h6>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.3706925053507!2d2.2860177756499986!3d48.85114130121773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67151e3c16d05%3A0x1e3446766ada1337!2s10%20Rue%20Sextius%20Michel%2C%2075015%20Paris!5e0!3m2!1sen!2sfr!4v1685744650557!5m2!1sen!2sfr"
+                        width="50%" height="70%" style="border-radius:10px; border: none;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <p> <br> 10 Rue Sextius Michel, 75015 Paris, France <br> </p> 
+                </div>               
+                    
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                    <p>info@webDynamique.ece.fr <br> 
+                    +33 01 02 03 04 05 <br>                  
+                    </p>
+                </div>
+            </div>
+            <div class="footer-copyright text-center">&copy; 2024 ECE In. Tous droits réservés.</div>
+        </div>
+    </footer>
 
 </body>
 </html>
