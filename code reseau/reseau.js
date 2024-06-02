@@ -15,7 +15,7 @@ function filterSuggestions() {
     const searchInput = document.getElementById('suggestion-search').value.toLowerCase();
     const suggestions = document.querySelectorAll('.suggestion');
     suggestions.forEach(suggestion => {
-        const suggestionName = suggestion.querySelector('.suggestion-info h3').textContent.toLowerCase();
+        const suggestionName = suggestion.querySelector('.suggestion h3').textContent.toLowerCase();
         if (suggestionName.includes(searchInput)) {
             suggestion.style.display = '';
         } else {
