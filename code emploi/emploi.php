@@ -3,7 +3,27 @@ if (isset($_SESSION['id'])) {
     $user_id = $_SESSION['id'];
 } else {
 }
-include '../verfriend.php';
+?>
+
+<?php
+$offremploi = [];
+$offrestage = [];
+
+// Fetch offers from the database
+$sql = "SELECT * FROM offer";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        if ($row['offer_type'] == 'emploi') {
+            $offremploi[] = $row;
+        } elseif ($row['offer_type'] == 'stage') {
+            $offrestage[] = $row;
+        }
+    }
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -49,37 +69,25 @@ include '../verfriend.php';
         <div class="right-panel">
             <section id="emploi">
                 <h2>Offres d'emploi</h2>
+                <?php foreach($offremploi as $offre): ?>
                 <div class="offreemploi">
-                    <h3>Développeur Web</h3>
-                    <p>Entreprise : TechCorp</p>
-                    <p>Lieu : Paris, France</p>
-                    <p>Description : Nous recherchons un développeur web expérimenté pour rejoindre notre équipe dynamique.</p>
-                    <button onclick="applyJob('Développeur Web')">Postuler</button>
+                    <h3><?php echo htmlspecialchars($offer['offer_domain']);?></h3>
+                    <p>Lieu : <?php echo htmlspecialchars($offer['offer_location'])?></p>
+                    <p>Description : <?php echo htmlspecialchars($offer['offer_content']); ?></p>
+                    <button onclick="applyJob('<?php echo htmlspecialchars($offer['offer_domain']); ?>')">Postuler</button>
                 </div>
-                <div class="offreemploi">
-                    <h3>Data Analyst</h3>
-                    <p>Entreprise : DataSolutions</p>
-                    <p>Lieu : Lyon, France</p>
-                    <p>Description : Analyse des données pour fournir des insights précieux aux clients.</p>
-                    <button onclick="applyJob('Data Analyst')">Postuler</button>
-                </div>
+                <?php endforeach?>
             </section>
             <section id="stage">
                 <h2>Offres de stage</h2>
+                <?php foreach ($offrestage as $offer): ?>
                 <div class="offreemploi">
-                    <h3>Stagiaire Marketing</h3>
-                    <p>Entreprise : MarketGuru</p>
-                    <p>Lieu : Marseille, France</p>
-                    <p>Description : Rejoignez notre équipe marketing pour apprendre et contribuer à des campagnes passionnantes.</p>
-                    <button onclick="applyJob('Stagiaire Marketing')">Postuler</button>
+                    <h3><?php echo htmlspecialchars($offer['offer_domain']); ?></h3>
+                    <p>Lieu : <?php echo htmlspecialchars($offer['offer_location']); ?></p>
+                    <p>Description : <?php echo htmlspecialchars($offer['offer_content']); ?></p>
+                    <button onclick="applyJob('<?php echo htmlspecialchars($offer['offer_domain']); ?>')">Postuler</button>
                 </div>
-                <div class="offreemploi">
-                    <h3>Stagiaire Développement</h3>
-                    <p>Entreprise : DevStart</p>
-                    <p>Lieu : Toulouse, France</p>
-                    <p>Description : Un stage pour les passionnés de développement logiciel.</p>
-                    <button onclick="applyJob('Stagiaire Développement')">Postuler</button>
-                </div>
+                <?php endforeach; ?>
             </section>
         </div>
     </div>
