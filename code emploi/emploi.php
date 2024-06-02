@@ -75,7 +75,8 @@ $conn->close();
                     <h3><?php echo htmlspecialchars($offre['offer_domain']);?></h3>
                     <p>Lieu : <?php echo htmlspecialchars($offre['offer_location'])?></p>
                     <p>Description : <?php echo htmlspecialchars($offre['offer_content']); ?></p>
-                    <button onclick="applyJob('<?php echo htmlspecialchars($offre['offer_id']); ?>')">Postuler</button>
+                    <p>Salaire : <?php echo htmlspecialchars($offre['offer_salaire']);   ?> $/ans</p>
+                    <?php  echo " <button class='postuler' data-id='" . htmlspecialchars($offre['offer_id']) . "'>postuler</button></li>";?>
                 </div>
                 <?php endforeach?>
             </section>
@@ -86,12 +87,39 @@ $conn->close();
                     <h3><?php echo htmlspecialchars($offer['offer_domain']); ?></h3>
                     <p>Lieu : <?php echo htmlspecialchars($offer['offer_location']); ?></p>
                     <p>Description : <?php echo htmlspecialchars($offer['offer_content']); ?></p>
-                    <button onclick="applyJob('<?php echo htmlspecialchars($offer['offer_id']); ?>')">Postuler</button>
+                    <p>Salaire : <?php echo htmlspecialchars($offer['offer_salaire']);  ?> $/mois</p>
+                    <?php  echo " <button class='postuler' data-id='" . htmlspecialchars($offer['offer_id']) . "'>postuler</button></li>";?>
                 </div>
                 <?php endforeach; ?>
             </section>
         </div>
     </div>
     <script src="emploi.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.postuler').click(function() {
+                var offerid = $(this).data('id');
+                var button = $(this);
+
+                $.ajax({
+                    url: 'apply_offer.php',
+                    type: 'POST',
+                    data: { offerid: offerid },
+                    success: function(response) {
+                        const data = JSON.parse(response);
+                        if (data.status === 'success') {
+                            $('#offer-' + offerid).hide();
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+        });
+        
+    });
+</script>
 </body>
 </html>
