@@ -31,7 +31,7 @@ include '../verfriend.php';
                 <a href="../Accueil/accueil.php"><div class="image-container"><img src="../image_mess/accueil.png" alt="profil" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../code reseau/reseau.html"><div class="image-container"><img src="../image_mess/loupe.png" alt="loupe" height="95%" width="100%"></div><div class="item-nav"></div></a><div class="cercle"></div></a>
+                <a href="../code reseau/reseau.php"><div class="image-container"><img src="../image_mess/loupe.png" alt="loupe" height="95%" width="100%"></div><div class="item-nav"></div></a><div class="cercle"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
                 <a href="../CodeVous/index.html"><div class="image-container"><img src="../image_mess/profil2.png" alt="profil" height="95%" width="100%"></div></a>

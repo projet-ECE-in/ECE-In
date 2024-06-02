@@ -11,6 +11,7 @@ session_start();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
     <header class="page-header header container-fluid">
@@ -21,29 +22,29 @@ session_start();
     <div class="wrapper">
         <div class="navbar">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a href="../front.html"><div class="image-container"><img src="image_mess/accueil.png" alt="Accueil" height="95%" width="100%"></div></a>
+                <a href="../Accueil/accueil.php"><div class="image-container"><img src="image_mess/accueil.png" alt="Accueil" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
                 <a href="../code reseau/reseau.php"><div class="image-container"><img src="image_mess/loupe.png" alt="Recherche" height="95%" width="100%"></div><div class="item-nav"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="index.html"><div class="image-container"><img src="image_mess/profil2.png" alt="Profil" height="95%" width="100%"></div><div class="cercle"></div></a>
+                <a href="index.php"><div class="image-container"><img src="image_mess/profil2.png" alt="Profil" height="95%" width="100%"></div><div class="cercle"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
                 <a href="#"><div class="image-container"><img src="image_mess/notif.png" alt="Notifications" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../mess.html"><div class="image-container"><img src="image_mess/mess.png" alt="Messages" height="95%" width="100%"></div></a>
+                <a href="../mess.php"><div class="image-container"><img src="image_mess/mess.png" alt="Messages" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../code emploi/emploi.php"><div class="image-container"><img src="image_mess/emploie.png" alt="Emploi" height="95%" width="100%"></div></a>
+                <a href="../code emploi/emploi.php"><div class="image-container"><img src="image_mess/empoie.png" alt="Emploi" height="95%" width="100%"></div></a>
             </div>
         </div>
         <div class="milieux">
             <div id="profile">
                 <div id="profile-picture-container">
                     <img id="profile-picture" src="<?php echo isset($_SESSION['pdp_u']) ? $_SESSION['pdp_u'] : 'default_profile.png'; ?>" alt="Profile Picture">
-                    <input type="file" id="upload-photo" accept="image/*">
+                    <a href="test.php" class="btn">modifier la photo de profil</a>
                 </div>
                 <div id="profile-info">
                     <form method="POST" action="">
@@ -95,11 +96,15 @@ session_start();
                 <div id="cv-output">
                     <!-- Le CV de l'utilisateur serait affiché ici -->
                     <iframe src="<?php echo isset($_SESSION['cv']) ? $_SESSION['cv'] : 'default_cv.pdf'; ?>" width="100%" height="400px"></iframe>
+                    <button id="generate-cv" class="btn btn-primary">Générer mon CV</button>
                 </div>
+               
+                
             </section>
 
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+</html>
 </html>
