@@ -34,7 +34,7 @@ session_start();
                 <a href="#"><div class="image-container"><img src="image_mess/notif.png" alt="Notifications" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
-                <a href="../mess.php"><div class="image-container"><img src="image_mess/mess.png" alt="Messages" height="95%" width="100%"></div></a>
+                <a href="../mess/mess.php"><div class="image-container"><img src="image_mess/mess.png" alt="Messages" height="95%" width="100%"></div></a>
                 <div class="spass"></div>
                 <div class="spass"></div>
                 <a href="../code emploi/emploi.php"><div class="image-container"><img src="image_mess/empoie.png" alt="Emploi" height="95%" width="100%"></div></a>
@@ -44,7 +44,7 @@ session_start();
             <div id="profile">
                 <div id="profile-picture-container">
                     <img id="profile-picture" src="<?php echo isset($_SESSION['pdp_u']) ? $_SESSION['pdp_u'] : 'default_profile.png'; ?>" alt="Profile Picture">
-                    <a href="test.php" class="btn">modifier la photo de profil</a>
+                    <a href="file.php" class="btn">modifier la photo de profil</a>
                 </div>
                 <div id="profile-info">
                     <form method="POST" action="">

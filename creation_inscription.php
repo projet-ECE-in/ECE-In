@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Configuration de la base de données
 $servername = "localhost:3308";
 $username = "root";
@@ -18,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $new_name = $_POST['new_name'];
     $email = $_POST['email'];
+
     $new_password = $_POST['new_password'];
 
     // Hacher le mot de passe
@@ -27,16 +29,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO utilisateur (utilisateur_pseudo, utilisateur_mail, utilisateur_password) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sss", $new_name, $email, $hashed_password);
-
     if ($stmt->execute()) {
         echo "<script>'Inscription réussie!';</script> ";
     } else {
         echo "Erreur: " . $stmt->error;
     }
+ $sql = "SELECT * FROM utilisateur WHERE utilisateur_pseudo = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $new_name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Vérifier si un utilisateur a été trouvé
+    if ($result->num_rows > 0) {
+        // Récupérer les données de l'utilisateur
+        $user = $result->fetch_assoc();
+
+        // Vérifier le mot de passe
+       
+            
+            $_SESSION['id'] = $user['id_utilisateur'];
+            $_SESSION['name'] = $user['utilisateur_lastname'];
+            $_SESSION['firstname'] = $user['utilisateur_firstname'];
+            $_SESSION['pseudo'] = $user['utilisateur_pseudo'];
+            $_SESSION['email'] = $user['utilisateur_mail'];
+            $_SESSION['password'] = $user['utilisateur_password'];
+            $_SESSION['role'] = $user['utilisateur_role'];
+            $_SESSION['phone'] = $user['utilisateur_phone'];
+            $_SESSION['pdp_u'] = $user['utilisateur_profile_picture'];
+            $_SESSION['cv'] = $user['utilisateur_cv'];
+            $_SESSION['bio'] = $user['utilisateur_xml'];
+        }
     header("Location: CodeVous/index.php");
     exit();
     // Fermer la connexion
     $stmt->close();
-}
 
+}
 ?>

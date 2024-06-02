@@ -332,6 +332,32 @@ function generatePDF(content) {
 }
 
 function importXMLData() {
-    // Fonction pour importer les données XML
-    // (non implémentée dans cette version)
+    <profile>
+    <name>John Doe</name>
+    <email>john.doe@example.com</email>
+    <education>
+        <entry>
+            <degree>Master en Informatique</degree>
+            <institution>ECE Paris</institution>
+            <year>2023</year>
+        </entry>
+        <entry>
+            <degree>Licence en Informatique</degree>
+            <institution>Université de Technologie</institution>
+            <year>2020</year>
+        </entry>
+    </education>
+    <projects>
+        <entry>
+            <name>Projet Erasmus</name>
+            <description>Développement d'une application web</description>
+            <year>2022</year>
+        </entry>
+        <entry>
+            <name>Projet de Fin d'Études</name>
+            <description>Conception et développement d'une application mobile</description>
+            <year>2023</year>
+        </entry>
+    </projects>
+</profile>
 }
