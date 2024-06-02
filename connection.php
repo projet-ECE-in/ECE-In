@@ -191,7 +191,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               
             }
             // Rediriger vers la page d'accueil ou une autre page sécurisée
+            
             header("Location: Accueil/accueil.php");
+            
             exit();
         } else {
             
@@ -205,5 +207,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
+/*$conn->close();*/
 
 ?>
