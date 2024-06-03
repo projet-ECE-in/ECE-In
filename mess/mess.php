@@ -55,6 +55,7 @@ if (isset($_SESSION['id'])) {
             display: inline-block;
             vertical-align: middle;
             text-align: right;
+            margin-left : 20px;
         }
         .contact-container {
             display: flex;
