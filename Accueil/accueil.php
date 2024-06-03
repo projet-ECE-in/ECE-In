@@ -118,7 +118,7 @@ if (isset($_SESSION['id'])) {
                 <div class="feedHead">
                     <div class="post">
                         <div class="PostHead">
-                            <a href="../CodeVous/index.html">
+                            <a href="../CodeVous/index.php">
                                 <img src="<?php echo $row3['utilisateur_profile_picture']; ?>" alt="logo" width="50">
                             </a>
                             <button>Faire une publication</button>
