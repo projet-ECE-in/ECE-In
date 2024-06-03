@@ -62,7 +62,7 @@ if (isset($_SESSION['id'])) {
     <header class="page-header header container-fluid">
         <h1 id="description">ECE In : Social Media Professionnel de l'ECE Paris</h1>
         
-        <img id="logo" src="Images/Logo_ECEIn.png" alt="Logo">
+        <img id="logo" src="image_mess/Logo_ECEIn.png" alt="Logo">
 
  </header>
     <div class="wrapper">

@@ -70,7 +70,7 @@ header {
     border-radius: 3px;
 }
 
-.friend, .suggestion {
+.friend, .suggestion  {
     display: flex;
     align-items: center;
     background-color: white;

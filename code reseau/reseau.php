@@ -47,6 +47,31 @@ include '../verfriend.php';
             </div>
         </div>
         <div class="separator"></div>
+        <?php
+        $sql = "SELECT utilisateur_pseudo, utilisateur_profile_picture FROM utilisateur WHERE id_utilisateur= ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i",$user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while($row = $result->fetch_assoc()) {
+            ?>
+            <div class= "friend">
+                <h2>Profil</h2>
+                <?php
+                if (!empty($row['utilisateur_profile_picture'])) {
+                        
+                    echo "<img src='" . htmlspecialchars($row['utilisateur_profile_picture']) . "' alt='Profile Picture' style='width:50px; height:50px; border-radius:50%;'>";
+                } else {
+                    
+                    echo "<img src='../Images/pdp.png' alt='Default Profile Picture' style='width:50px; height:50px; border-radius:50%;'>";
+                }
+                echo "<li>"  . $row["utilisateur_pseudo"];
+            ?>
+            </div>
+            <?php
+        }
+
+                ?>
         <div class="right-panel">
             <div class="friends-suggestions-container">
             <section id="friends" class="friends-section">
@@ -78,7 +103,19 @@ include '../verfriend.php';
                         
                         if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                echo "<li>" .$row["utilisateur_profile_picture"]. $row["utilisateur_firstname"]. " " . $row["utilisateur_lastname"]. " (" . $row["utilisateur_pseudo"]. ")</li>";
+                                ?>
+                                <div class= "friend"><?php
+                                    if (!empty($row['utilisateur_profile_picture'])) {
+                                            
+                                        echo "<img src='" . htmlspecialchars($row['utilisateur_profile_picture']) . "' alt='Profile Picture' style='width:50px; height:50px; border-radius:50%;'>";
+                                    } else {
+                                        
+                                        echo "<img src='../Images/pdp.png' alt='Default Profile Picture' style='width:50px; height:50px; border-radius:50%;'>";
+                                    }
+                                    echo "<li>" . $row["utilisateur_firstname"]. " " . $row["utilisateur_lastname"]. " (" . $row["utilisateur_pseudo"]. ")</li>";
+                                ?>
+                                </div>
+                                <?php
                             }
                         } else {
                             echo "0 résultats";
@@ -112,10 +149,10 @@ include '../verfriend.php';
                                     
                                     if (!empty($user['utilisateur_profile_picture'])) {
                                         
-                                        echo "<img src='" . htmlspecialchars($user['utilisateur_profile_picture']) . "' alt='Profile Picture' style='width:50px; height:50px;'>";
+                                        echo "<img src='" . htmlspecialchars($user['utilisateur_profile_picture']) . "' alt='Profile Picture' style='width:50px; height:50px; border-radius:50%;'>";
                                     } else {
                                         
-                                        echo "<img src='path/to/default/profile/picture.jpg' alt='Default Profile Picture' style='width:50px; height:50px;'>";
+                                        echo "<img src='../Images/pdp.png' alt='Default Profile Picture' style='width:50px; height:50px; border-radius:50%;'>";
                                     }
                                     ?>
                                     <h3><?php echo  htmlspecialchars($user['utilisateur_pseudo']) ;?></h3>
