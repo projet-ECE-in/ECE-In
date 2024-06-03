@@ -44,7 +44,7 @@ session_start();
             <div id="profile">
                 <div id="profile-picture-container">
                     <img id="profile-picture" src="<?php echo isset($_SESSION['pdp_u']) ? $_SESSION['pdp_u'] : 'default_profile.png'; ?>" alt="Profile Picture">
-                    <a href="file.php" class="btn">modifier la photo de profil</a>
+                    <a href="file.php" class="btn">modifier le profil</a>
                 </div>
                 <div id="profile-info">
                     <form method="POST" action="">
@@ -57,6 +57,7 @@ session_start();
                         <label for="email">Email:</label>
                         <input type="email" id="email" name="email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>" readonly>
                     </form>
+
                 </div>
             </div>
             
