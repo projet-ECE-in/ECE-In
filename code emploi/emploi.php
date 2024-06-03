@@ -9,6 +9,8 @@ if (isset($_SESSION['id'])) {
 <?php
 $offremploi = [];
 $offrestage = [];
+$offreapprentissage = [];
+$offrecdd = [];
 
 // Fetch offers from the database
 $sql = "SELECT * FROM offer";
@@ -20,6 +22,10 @@ if ($result->num_rows > 0) {
             $offremploi[] = $row;
         } elseif ($row['offer_type'] == 'stage') {
             $offrestage[] = $row;
+        }elseif ($row['offer_type'] == 'apprentissage') {
+            $offreapprentissage[] = $row;
+        }elseif ($row['offer_type'] == 'cdd') {
+            $offrecdd[] = $row;
         }
     }
 }
@@ -79,10 +85,30 @@ $conn->close();
                     <?php  echo " <button class='postuler' data-id='" . htmlspecialchars($offre['offer_id']) . "'>postuler</button></li>";?>
                 </div>
                 <?php endforeach?>
+                <h2>Offres de CDD</h2>
+                <?php foreach($offrecdd as $offre): ?>
+                <div class="offreemploi">
+                    <h3><?php echo htmlspecialchars($offre['offer_domain']);?></h3>
+                    <p>Lieu : <?php echo htmlspecialchars($offre['offer_location'])?></p>
+                    <p>Description : <?php echo htmlspecialchars($offre['offer_content']); ?></p>
+                    <p>Salaire : <?php echo htmlspecialchars($offre['offer_salaire']);   ?> $/ans</p>
+                    <?php  echo " <button class='postuler' data-id='" . htmlspecialchars($offre['offer_id']) . "'>postuler</button></li>";?>
+                </div>
+                <?php endforeach?>
             </section>
             <section id="stage">
                 <h2>Offres de stage</h2>
                 <?php foreach ($offrestage as $offer): ?>
+                <div class="offreemploi">
+                    <h3><?php echo htmlspecialchars($offer['offer_domain']); ?></h3>
+                    <p>Lieu : <?php echo htmlspecialchars($offer['offer_location']); ?></p>
+                    <p>Description : <?php echo htmlspecialchars($offer['offer_content']); ?></p>
+                    <p>Salaire : <?php echo htmlspecialchars($offer['offer_salaire']);  ?> $/mois</p>
+                    <?php  echo " <button class='postuler' data-id='" . htmlspecialchars($offer['offer_id']) . "'>postuler</button></li>";?>
+                </div>
+                <?php endforeach; ?>
+                <h2>Offres d'apprentissage</h2>
+                <?php foreach ($offreapprentissage as $offer): ?>
                 <div class="offreemploi">
                     <h3><?php echo htmlspecialchars($offer['offer_domain']); ?></h3>
                     <p>Lieu : <?php echo htmlspecialchars($offer['offer_location']); ?></p>
