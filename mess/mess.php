@@ -158,7 +158,8 @@ if (isset($_SESSION['id'])) {
                             // Mettre à jour l'image de profil de la conversation
                             var photoDiv = document.getElementById('photo_conv');
                             photoDiv.innerHTML = '<img src="' + pdp + '" class="image_contact">';
-
+                            var nomDiv = document.getElementById('nom_conv');
+                            nomDiv.innerHTML = '<div class="couleur">' + prenom + '</div>';
                             // Charger les messages de la conversation sélectionnée
                             var messagesDiv = document.getElementById('test');
                             messagesDiv.innerHTML = '';
