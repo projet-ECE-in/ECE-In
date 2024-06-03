@@ -124,25 +124,10 @@ $conn->close();
     <script>
         $(document).ready(function(){
             $('.postuler').click(function() {
-                var offerid = $(this).data('id');
-                var button = $(this);
+                alert('vous avez postuler à ce poste');
 
-                $.ajax({
-                    url: 'apply_offer.php',
-                    type: 'POST',
-                    data: { offerid: offerid },
-                    success: function(response) {
-                        const data = JSON.parse(response);
-                        if (data.status === 'success') {
-                            $('#offer-' + offerid).hide();
-                        } else {
-                            alert(data.message);
-                        }
-                    },
-                    error: function() {
-                        alert('An error occurred. Please try again.');
-                    }
-                });
+               
+            
         });
         
     });
