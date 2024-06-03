@@ -51,6 +51,11 @@ if (isset($_SESSION['id'])) {
             display: inline-block;
             vertical-align: middle;
         }
+        .appelle {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: right;
+        }
         .contact-container {
             display: flex;
             align-items: center;
@@ -138,6 +143,7 @@ if (isset($_SESSION['id'])) {
             <div class="right-panel-haut"> 
                 <div id ="photo_conv"></div>
                 <div id="nom_conv"></div>
+                <div id= "appel"></div>
                 
             </div>
             <div class="separator2"></div>
@@ -160,6 +166,8 @@ if (isset($_SESSION['id'])) {
                             photoDiv.innerHTML = '<img src="' + pdp + '" class="image_contact">';
                             var nomDiv = document.getElementById('nom_conv');
                             nomDiv.innerHTML = '<div class="couleur">' + prenom + '</div>';
+                            var nomDiv = document.getElementById('appel');
+                            nomDiv.innerHTML = '<div class="appelle"><a href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_Y2MwNjFkZTItM2NlNi00ZDAxLWJiMTUtYWMwMDZlYzQ4YTgz%40thread.v2/0?context=%7b%22Tid%22%3a%22a2697119-66c5-4126-9991-b0a8d15d367f%22%2c%22Oid%22%3a%229ecaaa49-f285-4ff9-af90-7e12f65dfd84%22%7d"><img src="image_mess/teams.png" alt="profil" class="image_contact"></a></div>';
                             // Charger les messages de la conversation sélectionnée
                             var messagesDiv = document.getElementById('test');
                             messagesDiv.innerHTML = '';
